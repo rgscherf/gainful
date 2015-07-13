@@ -2,8 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import csv
 
-# parsing HTML table with BeautifulSoup: http://stackoverflow.com/questions/23377533/python-beautifulsoup-parsing-table
-
 r = requests.get("https://www.brainhunter.com/frontoffice/searchSeekerJobAction.do?sitecode=pl389&locationPicker=Y&jobStream=&locationId=&levelIds=6&levelContent6=&keyword=&search=Search&order=&sortField=&goJobDetail=&sortedit=&externaljob=#searchSection")
 rtext = r.text
 soup = BeautifulSoup(rtext, "lxml")
