@@ -1,0 +1,1429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <meta content="no-cache" http-equiv="pragma">
+        <meta content="no-cache, must-revalidate" http-equiv="Cache-Control">
+        <meta content="0" http-equiv="expires">
+<!-- META DESCRIPTION -->
+<!--META KEYWORDS  -->
+        <META CONTENT="IE=edge" http-equiv="X-UA-Compatible">
+        <title>Job Seeker Home</title>
+        <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="/favicon.ico" rel="icon" type="image/x-icon">
+        <link href="css2/pl389/seeker.css" rel="stylesheet" type="text/css">
+        <script language="javascript" src="js/common/brainhunter.js"/><script src="../image/menu/en/iepngfix_tilebg.js" type="text/javascript"/><script language="javascript" src="dwr/interface/displayDropDown.js"/><script src="dwr/engine.js" type="text/javascript"/><script src="dwr/util.js" type="text/javascript"/>
+        <script language="javascript">
+            var flagId = '';
+            function openDateWindow(id) {
+                flagId = id;
+                window.open('jsp/Calendar.jsp?locale=en_CA', 'DateWindow', 'width=350,height=250,resizable=yes,scrollbars=yes');
+            }
+            function setDate(v) {
+                var obj = document.getElementById(flagId);
+                obj.value = v;
+                changeExpiryDate();
+            }
+            function changeExpiryDate() {}
+        </script>
+    </head>
+    <body class="body_parameters">
+<!-- START Container Table  -->
+        <table border="0" cellpadding="0" cellspacing="0" class="container_table" summary="">
+            <tr>
+                <td align="left">
+<!-- START Table - Page Header -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td>
+                                <div class="COTheader">
+                                    <label class="show-menu" for="show-menu" id="nav-toggle"><span/></label><input id="show-menu" role="button" type="checkbox">
+
+                                    <a href="http://www.toronto.ca/jobs">
+                                        <img alt="City of Toronto Jobs" id="COTlogo" src="https://www.brainhunter.com/tf/toronto/internal/cot_logo.png"></a>
+                                    <ul id="menu">
+                                        <li class="navItem">
+                                            <a class="navLink" href="searchSeekerJobAction.do?sitecode=pl389" id="navJobList">
+                                                Job List</a>
+                                        </li>
+                                        <li class="navItem">
+                                            <a class="navLink" href="selectRegisterMethodAction.do?sitecode=pl389" id="navLogin">
+                                                Login</a>
+                                        </li>
+                                        <li class="navItem">
+                                            <a class="navLink" href="seekerCreateAccountAction.do?sitecode=pl389" id="navRegister">
+                                                Register</a>
+                                        </li>
+                                        <li class="navItem">
+                                            <a class="navLink" href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=363ec4a8213d6410VgnVCM10000071d60f89RCRD" target="_blank">
+                                                Help</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <script>
+                    var viewPortTag = document.createElement('meta');
+                    viewPortTag.id = "viewportMeta";
+                    viewPortTag.name = "viewport";
+                    viewPortTag.content = "width=device-width, initial-scale=1";
+                    document.getElementsByTagName('head')[0].appendChild(viewPortTag);
+
+                </script>
+<!-- END Table - Page Header -->
+<!-- START Content Table to set WIDTH and JUSTIFICATION of page -->
+                <table border="0" cellpadding="0" cellspacing="0" class="content_table" summary="">
+
+                    <tr>
+                        <td><br><br><p/>
+                            <script language="javascript">
+                                function gotoPage(pageNumber) {
+                                    var form = document.SeekerSearchJobsForm;
+                                    form.currentPage.value = pageNumber;
+                                    form.gopage.value = "gopage";
+                                    form.goJobDetail.value = '';
+                                    form.submit();
+                                }
+                                function sortBy(field) {
+                                    var form = document.SeekerSearchJobsForm;
+                                    var oldOrder = form.order.value;
+                                    var oldSortField = form.sortField.value;
+                                    if (oldSortField == field) {
+                                        if (oldOrder == 'desc') {
+                                            form.order.value = "asc";
+                                        } else {
+                                            form.order.value = "desc";
+                                        }
+                                    } else {
+                                        if (field == "post_date") {
+                                            form.order.value = "asc";
+                                        } else {
+                                            form.order.value = "desc";
+                                        }
+                                    }
+                                    form.sortField.value = field;
+                                    form.sortedit.value = "sort";
+                                    form.goJobDetail.value = '';
+                                    form.submit();
+                                }
+
+                                function goJobDetail(jobIdValue, jobNumberValue, pageNumValue) {
+                                    var form = document.SeekerSearchJobsForm;
+                                    form.jobId.value = jobIdValue;
+                                    form.jobNumber.value = jobNumberValue;
+                                    form.currentPage.value = pageNumValue;
+                                    form.goJobDetail.value = "goJobDetail";
+                                    form.submit();
+                                }
+
+                                function clearJobDetail() {
+                                    var form = document.SeekerSearchJobsForm;
+                                    form.goJobDetail.value = "";
+                                }
+                            </script>
+                            <div class="table_spacing_careerSiteSetup">
+<!-- START Table Career Site Setup -->
+                                <table border="0" cellpadding="0" cellspacing="0" summary="" width="100%">
+                                    <tr>
+                                        <td width="100%">
+                                            <script>
+                                                window.onload = function() {
+
+                                                    var selectobject = document.querySelector("select[name=jobStream]");
+                                                    var selectobject2 = document.querySelector("select[name=levelContent6]");
+                                                    for (var i = 0; i < selectobject.length; i++) {
+                                                        if (selectobject.options[i].value == '3060')
+                                                            selectobject.remove(i);
+                                                        if (selectobject.options[i].value == '3121')
+                                                            selectobject.remove(i);
+                                                    }
+                                                    for (var i = 0; i < selectobject2.length; i++) {
+                                                        if (selectobject2.options[i].value == '23140')
+                                                            selectobject2.remove(i);
+                                                        if (selectobject2.options[i].value == '24116')
+                                                            selectobject2.remove(i);
+                                                        if (selectobject2.options[i].value == '24128')
+                                                            selectobject2.remove(i);
+                                                        if (selectobject2.options[i].value == '27365')
+                                                            selectobject2.remove(i);
+                                                        if (selectobject2.options[i].value == '24154')
+                                                            selectobject2.remove(i);
+                                                        if (selectobject2.options[i].value == '24161')
+                                                            selectobject2.remove(i);
+                                                        if (selectobject2.options[i].value == '24164')
+                                                            selectobject2.remove(i);
+                                                        if (selectobject2.options[i].value == '24166')
+                                                            selectobject2.remove(i);
+                                                        if (selectobject2.options[i].value == '24170')
+                                                            selectobject2.remove(i);
+                                                    }
+
+                                                }
+                                            </script>
+                                            <div class="alert alert-info">
+                                                We have made updates to the look of the site in order to make your experience with TalentFlow more user friendly. The features and functionality that you are familiar with have not been changed. Send your feedback to
+                                                <a href="mailto:jobshelp@toronto.ca" style="text-decoration:underline;">
+                                                    jobshelp@toronto.ca</a>
+                                            </div>
+                                            <div class="banner">
+
+                                                <div class="haze">
+                                                    <h2 class="pageheader">
+                                                        City of Toronto Job Opportunities</h2>
+                                                    <p>Please read these
+                                                        <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=363ec4a8213d6410VgnVCM10000071d60f89RCRD">
+                                                            important notes
+                                                        </a>before submitting an application.</p>
+
+                                                    <p>
+                                                        <a class="viewBtn" href="https://www.brainhunter.com/frontoffice/searchSeekerJobAction.do?sitecode=pl389">
+                                                            View Opportunities</a>
+                                                    </p>
+                                                    <a name="searchSection"/></div>
+                                            </div><br></td>
+                                    </tr>
+                                </table>
+<!-- END Table Career Site Setup -->
+                            </div>
+                            <div class="table_spacing_searchJobs"><!-- START Table Search Open Positions --><a name="searchSection"/>
+                                <form action="searchSeekerJobAction.do?sitecode=pl389" method="get" name="SeekerSearchJobsForm">
+                                    <input name="sitecode" type="hidden" value="pl389">
+                                    <input name="locationPicker" type="hidden" value="Y">
+                                    <table border="0" cellpadding="0" cellspacing="0" summary="" width="100%">
+                                        <tr>
+                                            <td class="tableheaderformat" width="100%">
+                                                <div class="tableheadertext">
+                                                    Search Open Positions</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tablebackground_2">
+<!-- START Sub Table Search Open Positions -->
+                                                <table border="0" cellpadding="2" cellspacing="1" summary="" width="100%">
+                                                    <tr><td colspan="2" height="10"/></tr>
+                                                    <tr>
+                                                        <td style="padding-left:15px" width="30%">
+                                                            <div class="maintext">
+                                                                Job Stream
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left:15px" width="70%">
+                                                            <select name="jobStream">
+                                                                <option selected="true" value="">
+                                                                    ALL
+                                                                </option>
+                                                                <option value="2987">
+                                                                    Accounting/Finance</option>
+                                                                <option value="2988">
+                                                                    Admin/Clerical/Customer Service</option>
+                                                                <option value="2989">Buildings/Facility Operations
+                                                                </option>
+                                                                <option value="2990">Business Operations</option>
+                                                                <option value="2991">Bylaw/Law Enforcement</option>
+                                                                <option value="2992">Children, Community &amp; Social Services</option>
+                                                                <option value="2993">Communications &amp; Protocol</option>
+                                                                <option value="2994">Construction/Trade</option>
+                                                                <option value="2995">Education</option>
+                                                                <option value="2996">Emergency Management/Fire Services</option>
+                                                                <option value="2997">Engineering</option>
+                                                                <option value="2998">Environmental</option>
+                                                                <option value="2999">Executive</option>
+                                                                <option value="3040">Health</option>
+                                                                <option value="3041">Human Resources</option>
+                                                                <option value="3042">Information &amp; Technology</option>
+                                                                <option value="3043">Legal</option>
+                                                                <option value="3044">Operations &amp; Maintenance</option>
+                                                                <option value="3045">Parks , Recreation &amp; Forestry</option>
+                                                                <option value="3046">Policy, Planning &amp; Research</option>
+                                                                <option value="3047">Project Management</option>
+                                                                <option value="3121">xx Orders of Consideration (Recruiter Use Only) xx</option>
+                                                                <option value="3060">xx Please do not Select (Recruiter Use Only) xx</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding-left:15px" width="30%">
+                                                            <div class="maintext">
+                                                                Job Location</div>
+                                                        </td>
+                                                        <td style="padding-left:15px" width="70%">
+                                                            <select name="locationId">
+                                                                <option value="">
+                                                                    ALL
+                                                                </option>
+                                                                <option value="52">
+                                                                    Canada-Ontario-ALL</option>
+                                                                <option value="318">
+                                                                    Canada-Ontario-Toronto</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding-left:15px">
+                                                            <div class="maintext">Division</div>
+                                                        </td>
+                                                        <td style="padding-left:15px"><input name="levelIds" type="hidden" value="6">
+                                                            <select class="selectMedium" name="levelContent6" size="1">
+                                                                <option value="">
+                                                                    ALL
+                                                                </option>
+                                                                <option value="26303">311 Toronto</option>
+                                                                <option value="24113">Accounting Services</option>
+                                                                <option value="24114">Affordable Housing Office</option>
+                                                                <option value="24115">Auditor General's Office</option>
+                                                                <option value="24117">Children's Services</option>
+                                                                <option value="24118">City Clerk's Office</option>
+                                                                <option value="24119">City Council</option>
+                                                                <option value="24120">City Manager's Office</option>
+                                                                <option value="24121">City Planning</option>
+                                                                <option value="24122">Corporate Finance</option>
+                                                                <option value="24124">Deputy City Manager A Office</option>
+                                                                <option value="24125">Deputy City Manager B Office</option>
+                                                                <option value="24126">Deputy City Manager CFO's Office</option>
+                                                                <option value="24127">Economic Development &amp; Culture</option>
+                                                                <option value="24129">Employment &amp; Social Services</option>
+                                                                <option value="27273">Engineering &amp; Construction Services</option>
+                                                                <option value="27966">Environment &amp; Energy Office</option>
+                                                                <option value="24130">Equity, Diversity &amp; Human Rights</option>
+                                                                <option value="24131">Executive Management</option>
+                                                                <option value="24132">Facilities Management</option>
+                                                                <option value="24133">Finance &amp; Administration</option>
+                                                                <option value="24134">Financial Planning</option>
+                                                                <option value="24135">Fire Services</option>
+                                                                <option value="24136">Fleet Services</option>
+                                                                <option value="24137">Human Resources</option>
+                                                                <option value="24138">Information &amp; Technology</option>
+                                                                <option value="24139">Integrity Commissioner's Office</option>
+                                                                <option value="24140">Internal Audit</option>
+                                                                <option value="24141">Legal Services</option>
+                                                                <option value="24142">Lobbyist Registrar's Office</option>
+                                                                <option value="24143">Long-Term Care Homes &amp; Services</option>
+                                                                <option value="24144">Major Capital Infrastructure Coordination Office</option>
+                                                                <option value="24145">Mayor's Office</option>
+                                                                <option value="24146">Municipal Licensing &amp; Standards</option>
+                                                                <option value="25581">N/A</option>
+                                                                <option value="24147">Office of Emergency Management</option>
+                                                                <option value="24148">Office of Ombudsman</option>
+                                                                <option value="27505">Office of the Chief Corporate Office</option>
+                                                                <option value="24149">Office of the Treasurer</option>
+                                                                <option value="24150">Parks, Forestry &amp; Recreation</option>
+                                                                <option value="24151">Pension, Payroll &amp; Employee Benefits</option>
+                                                                <option value="24152">Policy, Planning, Finance &amp; Admin</option>
+                                                                <option value="24153">Public Health</option>
+                                                                <option value="24155">Purchasing &amp; Materials Management</option>
+                                                                <option value="24156">Real Estate Services</option>
+                                                                <option value="24157">Revenue Services</option>
+                                                                <option value="24158">Shelter, Support &amp; Housing Admin</option>
+                                                                <option value="24159">Social Development, Finance &amp; Admin</option>
+                                                                <option value="24160">Solid Waste Management Services</option>
+                                                                <option value="24162">Strategic &amp; Corporate Policy</option>
+                                                                <option value="24163">Strategic Communications</option>
+                                                                <option value="24165">Toronto Building</option>
+                                                                <option value="24123">Toronto Court Services</option>
+                                                                <option value="24168">Toronto Office of Partnerships</option>
+                                                                <option value="28806">Toronto Paramedic Services</option>
+                                                                <option value="24167">Toronto Water</option>
+                                                                <option value="24169">Transportation Services</option>
+                                                                <option value="23140">Z311 Call Centre</option>
+                                                                <option value="24116">ZChief Corporate Officer</option>
+                                                                <option value="24128">ZEmergency Medical Services</option>
+                                                                <option value="27365">ZOffice of the Deputy City Manager and CFO</option>
+                                                                <option value="24154">ZPublic Information Creative Services</option>
+                                                                <option value="24161">ZSpecial Projects</option>
+                                                                <option value="24164">ZTechnical Services</option>
+                                                                <option value="24166">ZToronto Environment Office</option>
+                                                                <option value="24170">ZWaterfront Secretariat</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding-left:15px">
+                                                            <div class="maintext">Keyword Search</div>
+                                                        </td>
+                                                        <td style="padding-left:15px"><input maxlength="64" name="keyword" size="40" type="text" value="">&nbsp;
+                                                            <a onclick="window.open('/CareerSite/help/keyword_search_tips_jobseeker_en_CA.htm','MoveTxt','height=320,reSizable=1,width=480,scrollbars=1')" style="cursor:hand">
+                                                                <img border="0" height="18" src="/eng/image/q_mark3.gif" title="Click here for more information." width="18">
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <TR>
+                                                        <TD STYLE="padding-left:15px"></TD>
+                                                        <TD CLASS="maintext" VALIGN="top" style="padding-left:15px">
+                                                            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" SUMMARY="">
+                                                                <TR>
+                                                                    <TD WIDTH="285">
+                                                                        <DIV CLASS="maintext"><INPUT NAME="searchByJobTitleOnly" TYPE="checkbox" VALUE="Y">
+                                                                            &nbsp;By Job Title Only
+                                                                        </DIV>
+                                                                    </TD>
+                                                                    <TD><INPUT NAME="search" TYPE="submit" VALUE="Search">
+                                                                    </TD>
+                                                                    <TD/>
+                                                                </TR>
+                                                            </TABLE>
+                                                        </TD>
+                                                    </TR>
+                                                </table>
+<!-- END Sub Table Search Open Positions -->
+                                            </td>
+                                        </tr>
+                                    </table><input name="order" type="hidden" value="desc"><input name="sortField" type="hidden" value="post_date">
+                                    <input name="goJobDetail" type="hidden">
+                                    <input name="sortedit" type="hidden">
+                                    <input id="externaljob" name="externaljob" type="hidden" value="">
+                                </form>
+<!-- END Table Search Open Positions -->
+                            </div>
+                            <div class="table_spacing_searchResults">
+<!-- START Table Search Results -->
+                                <table border="0" cellpadding="0" cellspacing="0" summary="" width="100%">
+                                    <tr>
+                                        <td class="tableheaderformat" width="100%">
+                                            <div class="tableheadertext">Search Results</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablebackground" width="100%">
+<!-- START *Container* Table Search Results List -->
+                                            <table border="0" cellpadding="0" cellspacing="0" summary="" width="100%">
+                                                <tr>
+                                                    <td align="center" width="100%">
+<!-- START Sub Table Search Results List -->
+                                                        <table border="0" cellpadding="0" cellspacing="0" class="job_list_table" summary="">
+                                                            <tr>
+                                                                <td align="left" class="joblistheaderformat">
+                                                                    <a class="joblisttableheader_link" href="javascript:sortBy('post_date')">
+                                                                        Posting Date
+                                                                    </a>
+                                                                </td>
+                                                                <td align="left" class="joblistheaderformat">
+                                                                    <a class="joblisttableheader_link" href="javascript:sortBy('job_title')">
+                                                                        Job Title
+                                                                    </a>
+                                                                </td>
+                                                                <td align="left" class="joblistheaderformat">
+                                                                    Division</td>
+                                                                <td align="left" class="joblistheaderformat">
+                                                                    <a class="joblisttableheader_link" href="javascript:sortBy('permanent')">Job Type</a>
+                                                                </td>
+                                                                <td align="left" class="joblistheaderformat">
+                                                                    <a class="joblisttableheader_link" href="javascript:sortBy('display_country')">Job Location</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">13-Jul-2015</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2144665&amp;page=search&amp;external=">Coordinator, Elections
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">City Clerk's Office
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">13-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2143563&amp;page=search&amp;external=">
+                                                                            Senior Planner Urban Design
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">City Planning
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">10-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2146578&amp;page=search&amp;external=">
+                                                                            Manager Financial Services
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Long-Term Care Homes &amp; Services
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">10-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2141514&amp;page=search&amp;external=">
+                                                                            Project Lead, Traffic Management Centre
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Transportation Services
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">10-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2117891&amp;page=search&amp;external=">
+                                                                            Supervisor, Parks
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Parks, Forestry &amp; Recreation
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">10-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2134739&amp;page=search&amp;external=">
+                                                                            Support Assistant C
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Toronto Court Services
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">09-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2146597&amp;page=search&amp;external=">
+                                                                            Chief Chemist
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Toronto Water
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">09-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2140753&amp;page=search&amp;external=">
+                                                                            Health Information Analyst
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Public Health
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">09-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2145632&amp;page=search&amp;external=">
+                                                                            Senior Budget &amp; Operations Analyst
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Policy, Planning, Finance &amp; Admin
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">09-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2146290&amp;page=search&amp;external=">
+                                                                            Senior Systems Integrator IT (Business Architect)
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Information &amp; Technology
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">08-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2142576&amp;page=search&amp;external=">
+                                                                            Business Analyst, Facilities
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Office of the Chief Corporate Office
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">08-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2145017&amp;page=search&amp;external=">
+                                                                            Engineer
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Engineering &amp; Construction Services
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">08-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2145505&amp;page=search&amp;external=">
+                                                                            Engineer
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Engineering &amp; Construction Services
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">08-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2142106&amp;page=search&amp;external=">
+                                                                            Engineering Technologist Technician 1
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Transportation Services
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">08-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2141509&amp;page=search&amp;external=">
+                                                                            Manager, Strategic Initiatives, Policy &amp; Analysis (SIPA)
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">City Planning
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">08-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2142107&amp;page=search&amp;external=">
+                                                                            Planner Transportation - AMENDMENT
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">City Planning
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">08-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2145662&amp;page=search&amp;external=">
+                                                                            Support Assistant B
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Toronto Court Services
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">07-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2144688&amp;page=search&amp;external=">
+                                                                            Designer 3 (Web/Multimedia Designer)
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Information &amp; Technology
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">06-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2143729&amp;page=search&amp;external=">
+                                                                            Stationary Engineer Operator
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Toronto Water
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">06-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2144101&amp;page=search&amp;external=">
+                                                                            Trainer, Community Recreation Facilities
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Parks, Forestry &amp; Recreation
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">06-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2145111&amp;page=search&amp;external=">
+                                                                            eCity Management Consultant (Strategic Planning)
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Information &amp; Technology
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">03-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2141769&amp;page=search&amp;external=">
+                                                                            Human Resources Program Assistant
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Human Resources
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">03-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2143788&amp;page=search&amp;external=">
+                                                                            Support Assistant A - AMENDMENT
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Shelter, Support &amp; Housing Admin
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">02-Jul-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2141603&amp;page=search&amp;external=">
+                                                                            Director Engineering Support Services
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Engineering &amp; Construction Services
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">30-Jun-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2140542&amp;page=search&amp;external=">
+                                                                            Materials Management Assistant 2
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">City Clerk's Office
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">29-Jun-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2127516&amp;page=search&amp;external=">
+                                                                            Automotive Mechanic 2
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Fleet Services
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">29-Jun-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2143023&amp;page=search&amp;external=">
+                                                                            Engineer
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Toronto Water
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">29-Jun-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2140744&amp;page=search&amp;external=">
+                                                                            Operations Support Analyst 3 (Computer Operator)
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Information &amp; Technology
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">29-Jun-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2132820&amp;page=search&amp;external=">
+                                                                            Plumber
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Toronto Water
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">26-Jun-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2141474&amp;page=search&amp;external=">
+                                                                            Reproduction Copier Operator
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">City Clerk's Office
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Permanent, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">26-Jun-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2131950&amp;page=search&amp;external=">
+                                                                            Senior Systems Integrator PF&amp;R
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Parks, Forestry &amp; Recreation
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF1">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">25-Jun-2015
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        <a class="joblisttable_link" href="seekerViewJobDetailAction.do?sitecode=pl389&amp;jobId=2142927&amp;page=search&amp;external=">
+                                                                            System Development Specialist (OpenEdge Developer)
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Information &amp; Technology
+                                                                    </div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">Temporary, Full-Time</div>
+                                                                </td>
+                                                                <td align="left" class="joblisttableformat_TF2">
+                                                                    <div class="joblisttabletext">
+                                                                        Canada-Ontario-Toronto</div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+<!-- Debug slip 13912 - Corp Primary Jobs Section Here. -->
+<!-- END Sub Table Search Results List -->
+                                                        <div class="table_spacing_GeneralApp">
+                                                            <span class="maintext"/></div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+<!-- END *Container* Table Search Results List -->
+                                        </td>
+                                    </tr>
+                                </table>
+<!-- END Table Search Results -->
+                            </div>
+                            <div class="table_spacing_Login">
+<!-- START Table Login -->
+                                <form action="seekerLoginAction.do?sitecode=pl389" method="post">
+                                    <table border="0" cellpadding="0" cellspacing="0" summary="" width="100%">
+                                        <tr>
+                                            <td class="tablebackground_2">
+                                                <div class="table_spacing_Login_SubTbl">
+                                                    New?
+                                                    <a class="defaultlink" href="seekerCreateAccountAction.do?sitecode=pl389">
+                                                        Click here to Register
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <table border="1" cellpadding="" cellspacing="0" height="200" width="100%">
+                                                <tr>
+                                                    <td align="left" valign="top" width="45%">
+                                                        <table border="0" cellpadding="12" cellspacing="0" width="100%">
+                                                            <tr>
+                                                                <td class="tableheaderformat">
+                                                                    <div class="tableheadertext">Login
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="maintext" style="padding-bottom:15px">
+                                                                        Log in below if you have already created a TalentFlow profile.
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left">
+                                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                        <tr valign="middle">
+                                                                            <td class="maintext" valign="middle">
+                                                                                Username or E-mail Address
+                                                                            </td>
+                                                                            <td>
+                                                                                <input STYLE="width:100px" id="userName" maxlength="100" name="userName" size="15" type="text">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr valign="middle">
+                                                                            <td class="maintext">
+                                                                                Password
+                                                                            </td>
+                                                                            <td>
+                                                                                <input STYLE="width:100px" id="password" maxlength="100" name="password" size="15" type="password">
+                                                                                &nbsp;&nbsp;
+                                                                                <input name="login" type="submit" value="Login"></td>
+                                                                        </tr>
+                                                                        <tr align="middle">
+                                                                            <td/>
+                                                                            <td align="right" colspan="0">
+                                                                                <div style="padding-top:10px">
+                                                                                    <img border="0" height="18" src="/eng/image/q_mark3.gif" title="Click here to reset your password" width="18">&nbsp;
+                                                                                    <a class="defaultlink" href="enterForgotSeekerPasswordAction.do?sitecode=pl389">Forgot your password?</a>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                    <td align="left" valign="top" width="45%">
+                                                        <table border="0" cellpadding="12" cellspacing="0" width="100%">
+                                                            <tr>
+                                                                <td class="tableheaderformat">
+                                                                    <div class="tableheadertext">
+                                                                        Register
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="maintext" style="padding-bottom:15px">
+                                                                        Register and create a profile to apply for job opportunities.</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="center" valign="middle">
+                                                                    <input onClick="window.location.href='seekerCreateAccountAction.do?sitecode=pl389&amp;jobId='" type="button" value="Register Now"></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <br>
+                                                <br>
+                                                <p align="center" style="MARGIN-RIGHT: 1px"><img border="0" src="/eng/image/brainhunter.gif"></p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+<!-- END Table Login -->
+                            </div>
+                            <script language="JavaScript">
+                                if ("/frontoffice/searchSeekerJobAction.do" == window.location.pathname) {
+                                    window.location = window.location + "#searchSection";
+                                }
+                            </script>
+                        </td>
+                    </tr>
+                </table>
+<!-- END Content Table to set WIDTH and JUSTIFICATION of page -->
+<!-- START Table - Page Footer -->
+                <div class="COTfooter">
+                    <div class="lFooter">
+                        <h4>
+                            Other Opportunities
+                        </h4>
+                        <ul class="ftrList">
+                            <li class="ftrLink">
+                                <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=c3ae1f42c1744410VgnVCM10000071d60f89RCRD" target="_blank">Other Current Opportunities
+                                </a>
+                            </li>
+                            <li class="ftrLink">
+                                <a href="https://www.brainhunter.com/frontoffice/searchSeekerJobAction.do?sitecode=pl436#" target="_blank">Summer Opportunities
+                                </a>
+                            </li>
+                            <li class="ftrLink">
+                                <a href="https://www.brainhunter.com/frontoffice/searchSeekerJobAction.do?sitecode=pl435#" target="_blank">
+                                    Ongoing Opportunities
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mFooter">
+                        <h4>More Info</h4>
+                        <ul class="ftrList">
+                            <li class="ftrLink">
+                                <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=363ec4a8213d6410VgnVCM10000071d60f89RCRD" target="_blank">TalentFlow Support</a>
+                            </li>
+                            <li class="ftrLink">
+                                <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=e8749b3056a7c410VgnVCM10000071d60f89RCRD" target="_blank">
+                                    Policies & Statements
+                                </a>
+                            </li>
+                            <li class="ftrLink">
+                                <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=539548ab95d83410VgnVCM10000071d60f89RCRD&vgnextchannel=8e79f9be8db1c310VgnVCM1000006cd60f89RCRD" target="_blank">
+                                    Privacy Statement
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="rFooter">
+                        <h4>Follow Us</h4>
+                        <ul class="ftrList">
+                            <li class="ftrLink">
+                                <a href="https://twitter.com/citytojobs" target="_blank">
+                                    <img alt="Twitter" src="https://www.brainhunter.com/tf/toronto/internal/twitter.png" title="CityTOjobs Twitter"></img>
+                                </a>
+                            </li>
+                            <li class="ftrLink">
+                                <a href="https://www.facebook.com/CityTOjobs" target="_blank">
+                                    <img alt="Facebook" src="https://www.brainhunter.com/tf/toronto/internal/facebook.png" title="CityTOjobs Facebook"></img>
+                                </a>
+                            </li>
+                            <li class="ftrLink">
+                                <a href="https://www.linkedin.com/company/city-of-toronto" target="_blank">
+                                    <img alt="LinkedIn" src="https://www.brainhunter.com/tf/toronto/internal/linkedin.png" title="City of Toronto LinkedIn"></img>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clear">
+                        <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=d57ab9bd23805410VgnVCM10000071d60f89RCRD&vgnextchannel=8e79f9be8db1c310VgnVCM1000006cd60f89RCRD" target="_blank">&#169; City of Toronto</a>
+                    </div>
+                </div>
+<!-- START of Google Analytics Script -->
+                <script>
+                    (function(i, s, o, g, r, a, m) {
+                        i['GoogleAnalyticsObject'] = r;
+                        i[r] = i[r] || function() {
+                            (i[r].q = i[r].q || []).push(arguments)
+                        },
+                        i[r].l = 1 * new Date();
+                        a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                        a.async = 1;
+                        a.src = g;
+                        m.parentNode.insertBefore(a, m)
+                    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                    ga('create', 'UA-53612017-1', 'auto');
+                    ga('send', 'pageview');
+                </script>
+<!-- END of Google Analytics Script -->
+<!-- END Table - Page Footer -->
+            </td>
+        </tr>
+    </table>
+<!-- END Container Table -->
+<!-- START Locale Switch -->
+    <script language="javascript">
+        function SeekerHelp() {
+            window.open('enterSeekerHelpAction.do?sitecode=pl389', 'New', 'height=600,width=800,scrollbars=1,resizable=1');
+        }
+        function RecruiterHelp() {
+            window.open('enterRecruiterHelpAction.do?sitecode=pl389', 'New', 'height=600,width=800,scrollbars=1,resizable=1');
+        }
+
+        function fnPrintPage() {
+            var siteCode = document.getElementById('printpage').getAttribute('sitecode');
+            if (siteCode == 'pl121') {
+                var userType = 'seeker';
+                if (document.getElementById("jobId") == null) {
+                    window.print();
+                    return false;
+                }
+                var jobId = document.getElementById("jobId").value;
+                if (userType == 'seeker') {
+                    window.open('seekerViewJobDetailAction.do?sitecode=' + siteCode + '&jobId=' + jobId + '&page=simple', 'jobPrintWindow');
+                } else if (userType == 'recruiter') {
+                    window.open('enterEditJobAction.do?sitecode=' + siteCode + '&jobId=' + jobId + '&page=simple', 'jobPrintWindow');
+                } else {
+                    window.print();
+                }
+            } else {
+                window.print();
+            }
+        }
+    </script>
+<!-- END Locale Switch -->
+<!-- Used for debug only -->
+<!-- actions = SearchSeekerJobAction-->
+<!-- xsl files = /WEB-INF/xsl/en_CA/pl389/seeker/JobSeekerHome.xsl-->
+</body>
+</html>
