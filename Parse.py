@@ -1,9 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
-import csv
+import unicodecsv
 
 import Cities
-
 
 def parse(city):
     r = requests.get(city.request_url)
@@ -12,18 +11,19 @@ def parse(city):
 
     job_table = soup.find( city.soup_find_list[0] ,
                            city.soup_find_list[1] )
-    rows = job_table.find_all("tr")
+    rows = job_table.find_all('tr')
     data = city.make_csv(rows)
 
     with open(city.csv_name, "wb") as FILE:
-        writer = csv.writer(FILE, delimiter=",")
+        writer = unicodecsv.writer(FILE, delimiter=",", encoding="utf-8")
         for row in data:
             writer.writerow(row)
 
-
 if __name__ == '__main__':
     cities = [ Cities.Toronto()
-             , Cities.Hamilton() ]
+             , Cities.Mississauga()
+             , Cities.Hamilton()
+             ]
 
     for c in cities:
         parse(c)

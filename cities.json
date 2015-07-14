@@ -16,5 +16,14 @@
             }
         ],
         "csv_name": "jobs_hamilton.csv"
+    },
+    "mississauga": {
+        "request_url": "https://careers-mississauga.icims.com/jobs/search?hashed=0&in_iframe=1",
+        "soup_find_list": [
+            "table", {
+                "class": "iCIMS_JobsTable iCIMS_Table"
+            }
+        ],
+        "csv_name": "jobs_mississauga.csv"
     }
 }
