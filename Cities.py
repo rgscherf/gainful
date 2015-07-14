@@ -1,5 +1,5 @@
 import json
-from bs4 import BeautifulSoup
+
 
 class City(object):
     def __init__(self, name):
@@ -8,6 +8,7 @@ class City(object):
             self.request_url = d[name]["request_url"]
             self.soup_find_list = d[name]["soup_find_list"]
             self.csv_name = d[name]["csv_name"]
+
 
 class Toronto(City):
     def __init__(self):
@@ -27,6 +28,7 @@ class Toronto(City):
                 cols.append("https://www.brainhunter.com/frontoffice/" + url['href'].encode('ascii'))
             output_data.append([ele for ele in cols if ele])
         return output_data
+
 
 class Hamilton(City):
     def __init__(self):
