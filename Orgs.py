@@ -1,6 +1,6 @@
 import json
 
-class City(object):
+class Organization(object):
     def __init__(self, name):
         with open("cities.json") as FILE:
             d = json.load(FILE)
@@ -9,9 +9,9 @@ class City(object):
             self.csv_name = d[name]["csv_name"]
 
 
-class Toronto(City):
+class Toronto(Organization):
     def __init__(self):
-        City.__init__(self, "toronto")
+        Organization.__init__(self, "toronto")
 
     def make_csv(self, input_data):
         output_data = []
@@ -29,9 +29,9 @@ class Toronto(City):
         return output_data
 
 
-class Hamilton(City):
+class Hamilton(Organization):
     def __init__(self):
-        City.__init__(self, "hamilton")
+        Organization.__init__(self, "hamilton")
 
     def make_csv(self, input_data):
         output_data = []
@@ -44,9 +44,9 @@ class Hamilton(City):
         return output_data
 
 
-class Mississauga(City):
+class Mississauga(Organization):
     def __init__(self):
-        City.__init__(self, "mississauga")
+        Organization.__init__(self, "mississauga")
 
     def make_csv(self, input_data):
         output_data = []

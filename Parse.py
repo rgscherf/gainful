@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import unicodecsv
 
-import Cities
+import Orgs
 
 def parse(city):
     r = requests.get(city.request_url)
@@ -20,9 +20,9 @@ def parse(city):
             writer.writerow(row)
 
 if __name__ == '__main__':
-    cities = [ Cities.Toronto()
-             , Cities.Mississauga()
-             , Cities.Hamilton()
+    cities = [ Orgs.Toronto()
+             , Orgs.Mississauga()
+             , Orgs.Hamilton()
              ]
 
     for c in cities:
