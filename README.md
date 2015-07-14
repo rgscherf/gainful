@@ -1,10 +1,10 @@
-gainful
+Gainful
 =======
 
 Working toward a customizable daily digest of public service job postings
 
 TODO:
-=====
+-----
 
 -	site parsing:
 	-	more GTA municipalities
