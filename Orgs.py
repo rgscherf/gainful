@@ -1,8 +1,11 @@
 import json
 
-def log(elem):
-    with open("log.html", "wb") as FILE:
-        FILE.write(elem)
+
+################################################################################
+# OUTPUT FORMAT
+# ["Organization", "Job Title", "Division/Ministry", "Posting Date", "URL"]
+################################################################################
+
 
 class Organization(object):
     def __init__(self, name):
@@ -11,6 +14,7 @@ class Organization(object):
             self.request_url = d[name]["request_url"]
             self.soup_find_list = d[name]["soup_find_list"]
             self.csv_name = d[name]["csv_name"]
+            self.name = d[name]["name"]
 
 
 class Toronto(Organization):
@@ -36,8 +40,18 @@ class Toronto(Organization):
             output_data.append([elem for elem in cols if elem])
 
         del output_data[0]
-        output_data.insert(0, ["Posting Date", "Job Title", "Division", "Job Type", "Job Location", "Job URL"])
-        return output_data
+        # output_data.insert(0, ["Posting Date", "Job Title", "Division", "Job Type", "Job Location", "Job URL"])
+
+        sorted_output = []
+        for elem in output_data:
+            sorted_elem = []
+            sorted_elem.append(self.name)
+            sorted_elem.append(elem[1])
+            sorted_elem.append(elem[2])
+            sorted_elem.append(elem[0])
+            sorted_elem.append(elem[5])
+            sorted_output.append(sorted_elem)
+        return sorted_output
 
 
 class Hamilton(Organization):
@@ -55,9 +69,18 @@ class Hamilton(Organization):
             cols.append('https://hr.hamilton.ca/psp/hr9eapps/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_CE.GBL')
             output_data.append([elem for elem in cols if elem])
 
-        output_data.insert(0, ["Posting Date", "Job Title", "Job ID", "Department", "Job URL"])
+        # output_data.insert(0, ["Posting Date", "Job Title", "Job ID", "Department", "Job URL"])
 
-        return output_data
+        sorted_output = []
+        for elem in output_data:
+            sorted_elem = []
+            sorted_elem.append(self.name)
+            sorted_elem.append(elem[1])
+            sorted_elem.append(elem[3])
+            sorted_elem.append(elem[0])
+            sorted_elem.append(elem[4])
+            sorted_output.append(sorted_elem)
+        return sorted_output
 
 
 class Mississauga(Organization):
@@ -72,16 +95,28 @@ class Mississauga(Organization):
         for row in rows:
             cols = row.find_all('td')
             cols_clean = []
-            for elem in cols:
-                elem.span.decompose()
-                elem = elem.text.strip()
-                cols_clean.append(elem)
-            output_data.append([elem for elem in cols_clean if elem])
+            for job_elem in cols:
+                job_elem.span.decompose()
+                job_elem = job_elem.text.strip()
+                cols_clean.append(job_elem)
+            url = row.find('a')
+            cols_clean.append(url['href'])
+            output_data.append([job_elem for job_elem in cols_clean if job_elem])
 
         del output_data[0]
-        output_data.insert(0, ["Job ID", "Job Title", "Job Location", "Posted Date", "Job URL"])
+        # output_data.insert(0, ["Job ID", "Job Title", "Job Location", "Posted Date", "Job URL"])
 
-        return output_data
+        sorted_output = []
+        for elem in output_data:
+            sorted_elem = []
+            sorted_elem.append(self.name)
+            title = " ".join([word.capitalize() for word in elem[1].split()])
+            sorted_elem.append(title)
+            sorted_elem.append("City of Mississauga")
+            sorted_elem.append(elem[3])
+            sorted_elem.append(elem[4])
+            sorted_output.append(sorted_elem)
+        return sorted_output
 
 
 class Victoria(Organization):
@@ -92,7 +127,7 @@ class Victoria(Organization):
         output_data = []
         job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
         rows = job_table.find_all('tr')
-        rows = input_data[1:]
+        rows = rows[1:]
 
         for row in rows:
             cols = row.find_all('td')
@@ -102,13 +137,18 @@ class Victoria(Organization):
             cols.append(url)
             output_data.append([elem for elem in cols if elem])
 
-        output_data.insert(0, ["Job Title", "Job ID", "Department", "Status", "Closing Date", "Apply", "Details", "Job URL"])
-        for elem in output_data:
-            del elem[6]
-            del elem[5]
-            del elem[3]
+        # output_data.insert(0, ["Job Title", "Job ID", "Department", "Status", "Closing Date", "Apply", "Details", "Job URL"])
 
-        return output_data
+        sorted_output = []
+        for elem in output_data:
+            sorted_elem = []
+            sorted_elem.append(self.name)
+            sorted_elem.append(elem[0])
+            sorted_elem.append(elem[2])
+            sorted_elem.append("Closing: " + elem[3])
+            sorted_elem.append(elem[7])
+            sorted_output.append(sorted_elem)
+        return sorted_output
 
 
 class CRD(Organization):
@@ -118,6 +158,7 @@ class CRD(Organization):
     def make_data(self, input_data):
         output_data = []
         job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
+        job_table = job_table.find('table')
         rows = job_table.find_all('tr')
 
         for row in rows:
@@ -131,9 +172,18 @@ class CRD(Organization):
         del output_data[0]
         for elem in output_data:
             del elem[2]
-        output_data.insert(0, ["Job Title", "Closing Date", "Job URL"])
+        # output_data.insert(0, ["Job Title", "Closing Date", "Job URL"])
 
-        return output_data
+        sorted_output = []
+        for elem in output_data:
+            sorted_elem = []
+            sorted_elem.append(self.name)
+            sorted_elem.append(elem[0])
+            sorted_elem.append("Capital Regional District")
+            sorted_elem.append("Closing: " + elem[1])
+            sorted_elem.append(elem[2])
+            sorted_output.append(sorted_elem)
+        return sorted_output
 
 
 class OPS(Organization):
@@ -167,5 +217,16 @@ class OPS(Organization):
                 finished_row.append(cleaned_string)
             output_data.append(finished_row)
 
-        output_data.insert(0, ["Job Title", "Job URL", "Ministry", "Salary Range", "Location", "Closing Date"])
-        return output_data
+        # output_data.insert(0, ["Job Title", "Job URL", "Ministry", "Salary Range", "Location", "Closing Date"])
+
+        sorted_output = []
+        for elem in output_data:
+            sorted_elem = []
+            sorted_elem.append(self.name)
+            title = " ".join([word.capitalize() for word in elem[0].split()])
+            sorted_elem.append(title)
+            sorted_elem.append(elem[2])
+            sorted_elem.append("Closing: " + elem[5])
+            sorted_elem.append(elem[1])
+            sorted_output.append(sorted_elem)
+        return sorted_output

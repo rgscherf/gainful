@@ -6,7 +6,17 @@ Working toward a customizable daily digest of public service job postings
 TODO:
 -----
 
--	site parsing:
+-	data:
+	-	figure out date formatting so I know which postings are new
+	-	(done!) refactor output lists for HTML templating
+-	presentation:
+	-	jinja templating to generate HTML
+		-	https://realpython.com/blog/python/primer-on-jinja-templating/
+		-	http://flask.pocoo.org/docs/0.10/quickstart/
+	-	can this HTML be turned into email digest?
+	-	future -> support for multiple users
+		-	some kind of frontend (flask?)
+-	sites to parse:
 	-	more GTA municipalities
 		-	region of peel
 		-	york region
@@ -20,10 +30,10 @@ TODO:
 		-	metrolinx
 		-	TTC
 		-	TRCA
-	-	OPS (done!)
+	-	(done!) OPS
 	-	Island municipalities
-		-	victoria (done!)
-		-	CRD (done!)
+		-	(done!) victoria
+		-	(done!) CRD
 		-	saanich
 		-	oak bay
 		-	view royal
@@ -35,10 +45,3 @@ TODO:
 		-	sooke
 	-	CivicInfo.ca
 	-	BC Public Service
--	jinja templating to generate HTML
-	-	refactor output so that all lists are same format/order
-	-	https://realpython.com/blog/python/primer-on-jinja-templating/
-	-	http://flask.pocoo.org/docs/0.10/quickstart/
--	can this HTML be turned into email digest?
--	future -> support for multiple users
-	-	some kind of frontend (flask?)
