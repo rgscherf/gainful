@@ -18,9 +18,10 @@ TODO:
 		-	some kind of frontend (flask?)
 -	sites to parse:
 	-	more GTA municipalities
-		-	region of peel
-		-	york region
-		-	brampton
+		-	region of peel: https://careers-peelregion.icims.com/jobs/search?hashed=-435774142&mobile=false&width=560&height=500&bga=true&needsRedirect=false&jan1offset=-300&jun1offset=-240
+		-	york region: http://clients.njoyn.com/cl2/xweb/xweb.asp?page=joblisting&clid=60295
+		-	brampton: https://careers-brampton.icims.com/jobs/search?ss=1&searchKeyword=&searchLocation=&searchCategory=19538&searchRadius=5&searchZip=&mobile=false&width=1141&height=500&bga=true&needsRedirect=false&jan1offset=-300&jun1offset=-240
+		-	barrie: http://www.barrie.ca/City%20Hall/Employment/Pages/opportunities.aspx
 	-	GTA institutions
 		-	UofT
 		-	Ryerson
@@ -30,7 +31,10 @@ TODO:
 		-	metrolinx
 		-	TTC
 		-	TRCA
-	-	(done!) OPS
+	-	Ontario public service
+		-	(done!) OPS
+		-	Ontario AG
+		-	Ontario OIPC
 	-	Island municipalities
 		-	(done!) victoria
 		-	(done!) CRD
@@ -45,3 +49,4 @@ TODO:
 		-	sooke
 	-	CivicInfo.ca
 	-	BC Public Service
+		-	Government https://search.employment.gov.bc.ca/cgi-bin/a/searchjobs_quick.cgi?a=search&page=1&search=Search%20Jobs&keywords_or=&region=Greater%20Victoria&order=job_id%20ASC

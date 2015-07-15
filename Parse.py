@@ -3,7 +3,7 @@ import requests
 import unicodecsv
 from itertools import chain
 
-import Orgs
+import orgs
 
 def parse(org):
     r = requests.get(org.request_url)
@@ -13,14 +13,15 @@ def parse(org):
     return data
 
 if __name__ == '__main__':
-    cities = [ Orgs.Toronto()
-             , Orgs.Mississauga()
-             , Orgs.Hamilton()
-             , Orgs.Victoria()
-             , Orgs.CRD()
-             , Orgs.OPS()
-             ]
+    # cities = [ orgs.Toronto()
+    #          , orgs.Hamilton()
+    #          , orgs.Mississauga
+    #          , orgs.Victoria()
+    #          , orgs.CRD()
+    #          , orgs.OPS()
+    #          ]
 
+    cities = [ orgs.Mississauga() ]
     source = []
     for c in cities:
         org_data = parse(c)

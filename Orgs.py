@@ -1,4 +1,5 @@
 import json
+import dateutil.parser as dp
 
 
 ################################################################################
@@ -7,15 +8,21 @@ import json
 ################################################################################
 
 
+
+
 class Organization(object):
     def __init__(self, name):
-        with open("Orgs.json") as FILE:
+        with open("orgs.json") as FILE:
             d = json.load(FILE)
             self.request_url = d[name]["request_url"]
             self.soup_find_list = d[name]["soup_find_list"]
             self.csv_name = d[name]["csv_name"]
             self.name = d[name]["name"]
 
+    def parse_date(self, date_string):
+        date = dp.parse(date_string)
+        res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
+        return res
 
 class Toronto(Organization):
     def __init__(self):
@@ -48,7 +55,7 @@ class Toronto(Organization):
             sorted_elem.append(self.name)
             sorted_elem.append(elem[1])
             sorted_elem.append(elem[2])
-            sorted_elem.append(elem[0])
+            sorted_elem.append(self.parse_date(elem[0])) # post date
             sorted_elem.append(elem[5])
             sorted_output.append(sorted_elem)
         return sorted_output
@@ -77,7 +84,7 @@ class Hamilton(Organization):
             sorted_elem.append(self.name)
             sorted_elem.append(elem[1])
             sorted_elem.append(elem[3])
-            sorted_elem.append(elem[0])
+            sorted_elem.append(self.parse_date(elem[0])) # post date
             sorted_elem.append(elem[4])
             sorted_output.append(sorted_elem)
         return sorted_output
@@ -97,7 +104,11 @@ class Mississauga(Organization):
             cols_clean = []
             for job_elem in cols:
                 job_elem.span.decompose()
+                print "JOB:=========="
+                print job_elem
+                print "CLEANED_JOB:=="
                 job_elem = job_elem.text.strip()
+                print job_elem
                 cols_clean.append(job_elem)
             url = row.find('a')
             cols_clean.append(url['href'])
@@ -113,7 +124,7 @@ class Mississauga(Organization):
             title = " ".join([word.capitalize() for word in elem[1].split()])
             sorted_elem.append(title)
             sorted_elem.append("City of Mississauga")
-            sorted_elem.append(elem[3])
+            sorted_elem.append(self.parse_date(elem[3])) # post date
             sorted_elem.append(elem[4])
             sorted_output.append(sorted_elem)
         return sorted_output
@@ -145,7 +156,7 @@ class Victoria(Organization):
             sorted_elem.append(self.name)
             sorted_elem.append(elem[0])
             sorted_elem.append(elem[2])
-            sorted_elem.append("Closing: " + elem[3])
+            sorted_elem.append("Closing: " + self.parse_date(elem[4])) # close date
             sorted_elem.append(elem[7])
             sorted_output.append(sorted_elem)
         return sorted_output
@@ -180,7 +191,7 @@ class CRD(Organization):
             sorted_elem.append(self.name)
             sorted_elem.append(elem[0])
             sorted_elem.append("Capital Regional District")
-            sorted_elem.append("Closing: " + elem[1])
+            sorted_elem.append("Closing: " + self.parse_date(elem[1])) # close date
             sorted_elem.append(elem[2])
             sorted_output.append(sorted_elem)
         return sorted_output
@@ -226,7 +237,7 @@ class OPS(Organization):
             title = " ".join([word.capitalize() for word in elem[0].split()])
             sorted_elem.append(title)
             sorted_elem.append(elem[2])
-            sorted_elem.append("Closing: " + elem[5])
+            sorted_elem.append("Closing: " + self.parse_date(elem[5])) # close date
             sorted_elem.append(elem[1])
             sorted_output.append(sorted_elem)
         return sorted_output
