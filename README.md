@@ -8,6 +8,9 @@ TODO:
 
 -	site parsing:
 	-	more GTA municipalities
+		-	region of peel
+		-	york region
+		-	brampton
 	-	GTA institutions
 		-	UofT
 		-	Ryerson
@@ -17,11 +20,10 @@ TODO:
 		-	metrolinx
 		-	TTC
 		-	TRCA
-	-	OPS
-		-	jobs site
+	-	OPS (done!)
 	-	Island municipalities
 		-	victoria (done!)
-		-	CRD
+		-	CRD (done!)
 		-	saanich
 		-	oak bay
 		-	view royal
@@ -33,8 +35,8 @@ TODO:
 		-	sooke
 	-	CivicInfo.ca
 	-	BC Public Service
--	database
-	-	can I just plug in JSON?
--	how to email digest?
--	support for multiple users
+-	jinja templating to generate HTML
+	-	refactor output so that all lists are same format/order
+-	can this HTML be turned into email digest?
+-	future -> support for multiple users
 	-	some kind of frontend (flask?)
