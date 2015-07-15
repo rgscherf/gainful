@@ -7,7 +7,7 @@
             }
         ],
         "csv_name": "jobs_toronto.csv",
-        "tags": ["municipal", "GTHA", "government"]
+        "tags": ["municipal", "ontario", "government"]
     },
     "hamilton": {
         "request_url": "https://hr.hamilton.ca/psc/hr9eapps/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_CE.GBL?PortalActualURL=https%3a%2f%2fhr.hamilton.ca%2fpsc%2fhr9eapps%2fEMPLOYEE%2fHRMS%2fc%2fHRS_HRAM.HRS_CE.GBL&amp;PortalContentURL=https%3a%2f%2fhr.hamilton.ca%2fpsc%2fhr9eapps%2fEMPLOYEE%2fHRMS%2fc%2fHRS_HRAM.HRS_CE.GBL&amp;PortalContentProvider=HRMS&amp;PortalCRefLabel=Careers&amp;PortalRegistryName=EMPLOYEE&amp;PortalServletURI=https%3a%2f%2fhr.hamilton.ca%2fpsp%2fhr9eapps%2f&amp;PortalURI=https%3a%2f%2fhr.hamilton.ca%2fpsc%2fhr9eapps%2f&amp;PortalHostNode=HRMS&amp;NoCrumbs=yes&amp;PortalKeyStruct=yes",
@@ -17,7 +17,7 @@
             }
         ],
         "csv_name": "jobs_hamilton.csv",
-        "tags": ["municipal", "GTHA", "government"]
+        "tags": ["municipal", "ontario", "government"]
     },
     "mississauga": {
         "request_url": "https://careers-mississauga.icims.com/jobs/search?hashed=0&in_iframe=1",
@@ -27,7 +27,7 @@
             }
         ],
         "csv_name": "jobs_mississauga.csv",
-        "tags": ["municipal", "GTHA", "government"]
+        "tags": ["municipal", "ontario", "government"]
     },
     "victoria": {
         "request_url": "http://www.victoria.ca/EN/main/departments/hr/current-employment-opportunities.html",
@@ -37,16 +37,26 @@
             }
         ],
         "csv_name": "jobs_victoria.csv",
-        "tags": ["municipal", "island", "BC", "government"]
+        "tags": ["municipal", "BC", "government"]
     },
     "crd": {
         "request_url": "https://www.crd.bc.ca/about/careers/current-opportunities",
         "soup_find_list": [
             "table", {
-
+                "width": "100%"
             }
         ],
         "csv_name": "jobs_crd.csv",
-        "tags": ["municipal", "island", "BC", "government"]
+        "tags": ["municipal", "BC", "government"]
+    },
+    "ops": {
+        "request_url": "https://www.gojobs.gov.on.ca/Search.aspx?Language=English&rg=REGION-TRNT&cl=CAREERLEVEL-NOTSLCTD",
+        "soup_find_list": [
+            "table", {
+                "class": "maintableSearch"
+            }
+        ],
+        "csv_name": "jobs_ops.csv",
+        "tags": ["provincial", "ontario", "government"]
     }
 }

@@ -9,8 +9,12 @@ def parse(org):
     rtext = r.text
     soup = BeautifulSoup(rtext, "lxml")
 
-    job_table = soup.find(org.soup_find_list[0], org.soup_find_list[1] )
+    data = org.make_data(soup)
+
+    job_table = soup.find(org.soup_find_list[0], org.soup_find_list[1])
     rows = job_table.find_all('tr')
+    print rows[0]
+    print rows[3]
     data = org.make_csv(rows)
 
     with open(org.csv_name, "wb") as FILE:
@@ -23,8 +27,9 @@ if __name__ == '__main__':
     #          , Orgs.Mississauga()
     #          , Orgs.Hamilton()
     #          , Orgs.Victoria()
+    #          , Orgs.CRD()
     #          ]
 
-    cities = [Orgs.CRD()]
+    cities = [Orgs.OPS()]
     for c in cities:
         parse(c)

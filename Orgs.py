@@ -13,11 +13,15 @@ class Toronto(Organization):
     def __init__(self):
         Organization.__init__(self, "toronto")
 
-    def make_csv(self, input_data):
+    def make_data(self, input_data):
+
+        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        rows = job_table.find_all('tr')
+
         output_data = []
         first_row = True
 
-        for row in input_data:
+        for row in rows:
             cols = row.find_all('td')
             cols = [elem.text.strip() for elem in cols]
             if first_row:
@@ -35,10 +39,13 @@ class Hamilton(Organization):
     def __init__(self):
         Organization.__init__(self, "hamilton")
 
-    def make_csv(self, input_data):
+    def make_data(self, input_data):
         output_data = []
 
-        for row in input_data:
+        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        rows = job_table.find_all('tr')
+
+        for row in rows:
             cols = row.find_all('td')
             cols = [elem.text.encode('utf-8').strip() for elem in cols]
             cols.append('https://hr.hamilton.ca/psp/hr9eapps/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_CE.GBL')
@@ -53,10 +60,13 @@ class Mississauga(Organization):
     def __init__(self):
         Organization.__init__(self, "mississauga")
 
-    def make_csv(self, input_data):
+    def make_data(self, input_data):
         output_data = []
 
-        for row in input_data:
+        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        rows = job_table.find_all('tr')
+
+        for row in rows:
             cols = row.find_all('td')
             cols_clean = []
             for elem in cols:
@@ -74,11 +84,14 @@ class Victoria(Organization):
     def __init__(self):
         Organization.__init__(self, "victoria")
 
-    def make_csv(self, input_data):
+    def make_data(self, input_data):
         output_data = []
-        input_data = input_data[1:]
 
-        for row in input_data:
+        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        rows = job_table.find_all('tr')
+        rows = input_data[1:]
+
+        for row in rows:
             cols = row.find_all('td')
             cols = [elem.text.strip() for elem in cols]
             urls = row.find_all('a')
@@ -98,14 +111,18 @@ class CRD(Organization):
     def __init__(self):
         Organization.__init__(self, "crd")
 
-    def make_csv(self, input_data):
+    def make_data(self, input_data):
         output_data = []
-        for row in input_data:
+
+        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        rows = job_table.find_all('tr')
+
+        for row in rows:
             cols = row.find_all('td')
-            cols = [elem.text.encode('utf-8').strip() for elem in cols]
+            cols = [elem.text.strip() for elem in cols]
             url = row.find('a')
             if url:
-                cols.append("http://www.crd.bc.ca/" + url['href'].encode('utf-8'))
+                cols.append("http://www.crd.bc.ca" + url['href'].encode('utf-8'))
             output_data.append([elem for elem in cols if elem])
 
         del output_data[0]
@@ -119,5 +136,6 @@ class OPS(Organization):
     def __init__(self):
         Organization.__init__(self,"ops")
 
-    def make_csv(self, input_data):
+    def make_data(self, input_data):
+        output_data = []
         pass
