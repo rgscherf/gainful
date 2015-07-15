@@ -7,6 +7,10 @@ import dateutil.parser as dp
 # ["Organization", "Job Title", "Division/Ministry", "Posting Date", "URL"]
 ################################################################################
 
+def log(t):
+    t = t.prettify().encode('utf-8')
+    with open("log.html", "wb") as FILE:
+        FILE.write(t)
 
 
 
@@ -99,35 +103,44 @@ class Mississauga(Organization):
         job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
         rows = job_table.find_all('tr')
 
+        first_row = True
         for row in rows:
-            cols = row.find_all('td')
-            cols_clean = []
-            for job_elem in cols:
-                job_elem.span.decompose()
-                print "JOB:=========="
-                print job_elem
-                print "CLEANED_JOB:=="
-                job_elem = job_elem.text.strip()
-                print job_elem
-                cols_clean.append(job_elem)
-            url = row.find('a')
-            cols_clean.append(url['href'])
-            output_data.append([job_elem for job_elem in cols_clean if job_elem])
+            row_data = []
+            if first_row:
+                first_row = not first_row
+                continue
+            log(row)
+            date = row.find('td', 'iCIMS_JobsTableField_4').find_all('span')
+            date = date[1].text.encode('utf-8').strip()
+            title = row.find('a').text.encode('utf-8').strip()
+            title = " ".join([word.capitalize() for word in title.split()])
+            url = row.find('a')['href'].encode('utf-8')
 
-        del output_data[0]
+            row_data.append(self.name)
+            row_data.append(title)
+            row_data.append("City of Mississauga")
+            row_data.append(self.parse_date(date))
+            row_data.append(url)
+
+            output_data.append(row_data)
+
+        return output_data
+
+        # for row in rows:
+        #     cols = row.find_all('td')
+        #     cols_clean = []
+        #     for job_elem in cols:
+        #         job_elem.span.decompose()
+        #
+        #         job_elem = job_elem.text.strip()
+        #         cols_clean.append(job_elem)
+        #     url = row.find('a')
+        #     cols_clean.append(url['href'])
+        #     output_data.append([job_elem for job_elem in cols_clean if job_elem])
+
         # output_data.insert(0, ["Job ID", "Job Title", "Job Location", "Posted Date", "Job URL"])
 
-        sorted_output = []
-        for elem in output_data:
-            sorted_elem = []
-            sorted_elem.append(self.name)
-            title = " ".join([word.capitalize() for word in elem[1].split()])
-            sorted_elem.append(title)
-            sorted_elem.append("City of Mississauga")
-            sorted_elem.append(self.parse_date(elem[3])) # post date
-            sorted_elem.append(elem[4])
-            sorted_output.append(sorted_elem)
-        return sorted_output
+
 
 
 class Victoria(Organization):

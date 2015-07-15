@@ -13,15 +13,15 @@ def parse(org):
     return data
 
 if __name__ == '__main__':
-    # cities = [ orgs.Toronto()
-    #          , orgs.Hamilton()
-    #          , orgs.Mississauga
-    #          , orgs.Victoria()
-    #          , orgs.CRD()
-    #          , orgs.OPS()
-    #          ]
+    cities = [ orgs.Toronto()
+             , orgs.Hamilton()
+             , orgs.Mississauga()
+             , orgs.Victoria()
+             , orgs.CRD()
+             , orgs.OPS()
+             ]
 
-    cities = [ orgs.Mississauga() ]
+
     source = []
     for c in cities:
         org_data = parse(c)
