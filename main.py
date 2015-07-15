@@ -5,6 +5,14 @@ from itertools import chain
 
 import orgs
 
+organizations = [ orgs.Toronto()
+         , orgs.Hamilton()
+         , orgs.Mississauga()
+         , orgs.Victoria()
+         , orgs.CRD()
+         , orgs.OPS()
+         ]
+
 def parse(org):
     r = requests.get(org.request_url)
     rtext = r.text
@@ -12,20 +20,11 @@ def parse(org):
     data = org.make_data(soup)
     return data
 
-if __name__ == '__main__':
-    cities = [ orgs.Toronto()
-             , orgs.Hamilton()
-             , orgs.Mississauga()
-             , orgs.Victoria()
-             , orgs.CRD()
-             , orgs.OPS()
-             ]
-
-
+def main():
     source = []
-    for c in cities:
-        org_data = parse(c)
-        source.append(org_data)
+
+    for o in organizations:
+        source.append(parse(o))
 
     flattened_list = list(chain.from_iterable(source))
 
@@ -33,3 +32,6 @@ if __name__ == '__main__':
         writer = unicodecsv.writer(FILE, delimiter=",", encoding="utf-8")
         for row in flattened_list:
             writer.writerow(row)
+
+if __name__ == '__main__':
+    main()

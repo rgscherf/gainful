@@ -14,6 +14,9 @@ TODO:
 		-	https://realpython.com/blog/python/primer-on-jinja-templating/
 		-	http://flask.pocoo.org/docs/0.10/quickstart/
 	-	can this HTML be turned into email digest?
+		-	https://charlesleifer.com/blog/saturday-morning-hack-personalized-news-digest-with-boolean-query-parser/
+			-	http://huey.readthedocs.org/en/latest/
+			-	http://docs.peewee-orm.com/en/latest/
 	-	future -> support for multiple users
 		-	some kind of frontend (flask?)
 -	sites to parse:

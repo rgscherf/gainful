@@ -106,10 +106,11 @@ class Mississauga(Organization):
         first_row = True
         for row in rows:
             row_data = []
+
             if first_row:
                 first_row = not first_row
                 continue
-            log(row)
+
             date = row.find('td', 'iCIMS_JobsTableField_4').find_all('span')
             date = date[1].text.encode('utf-8').strip()
             title = row.find('a').text.encode('utf-8').strip()
@@ -125,23 +126,6 @@ class Mississauga(Organization):
             output_data.append(row_data)
 
         return output_data
-
-        # for row in rows:
-        #     cols = row.find_all('td')
-        #     cols_clean = []
-        #     for job_elem in cols:
-        #         job_elem.span.decompose()
-        #
-        #         job_elem = job_elem.text.strip()
-        #         cols_clean.append(job_elem)
-        #     url = row.find('a')
-        #     cols_clean.append(url['href'])
-        #     output_data.append([job_elem for job_elem in cols_clean if job_elem])
-
-        # output_data.insert(0, ["Job ID", "Job Title", "Job Location", "Posted Date", "Job URL"])
-
-
-
 
 class Victoria(Organization):
     def __init__(self):
