@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Job listings </title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+        .container {
+            max-width: 500px;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>
+            Loop through list:
+        </p>
+        <table>
+            {% for n in data %}
+            <tr>
+                <td>
+                    {{n[0]}}
+                </td>
+                <td>
+                    <a href="{{n[4]}}">{{n[1]}}</a>
+                </td>
+                <td>
+                    {{n[2]}}
+                </td>
+                <td>
+                    {{n[3]}}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

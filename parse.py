@@ -3,6 +3,7 @@ import requests
 from itertools import chain
 import orgs
 
+
 # import unicodecsv
 
 organizations = [ orgs.Toronto()
@@ -27,6 +28,9 @@ def build_parse_list():
         source.append(parse(o))
 
     flattened_list = list(chain.from_iterable(source))
+    for i in flattened_list:
+        for j in i:
+            j.encode('utf-8')
 
     return flattened_list
 

@@ -1,6 +1,10 @@
 import json
+import datetime
 import dateutil.parser as dp
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 ################################################################################
 # OUTPUT FORMAT
@@ -11,8 +15,6 @@ def log(t):
     t = t.prettify().encode('utf-8')
     with open("log.html", "wb") as FILE:
         FILE.write(t)
-
-
 
 class Organization(object):
     def __init__(self, name):
@@ -28,6 +30,11 @@ class Organization(object):
         res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
         return res
 
+    def parse_today(self):
+        date = datetime.date.today()
+        res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
+        return res
+        
 class Toronto(Organization):
     def __init__(self):
         Organization.__init__(self, "toronto")
@@ -153,7 +160,7 @@ class Victoria(Organization):
             sorted_elem.append(self.name)
             sorted_elem.append(elem[0])
             sorted_elem.append(elem[2])
-            sorted_elem.append("Closing: " + self.parse_date(elem[4])) # close date
+            sorted_elem.append(self.parse_today()) # close date
             sorted_elem.append(elem[7])
             sorted_output.append(sorted_elem)
         return sorted_output
@@ -188,7 +195,7 @@ class CRD(Organization):
             sorted_elem.append(self.name)
             sorted_elem.append(elem[0])
             sorted_elem.append("Capital Regional District")
-            sorted_elem.append("Closing: " + self.parse_date(elem[1])) # close date
+            sorted_elem.append(self.parse_today()) # close date
             sorted_elem.append(elem[2])
             sorted_output.append(sorted_elem)
         return sorted_output
@@ -234,7 +241,7 @@ class OPS(Organization):
             title = " ".join([word.capitalize() for word in elem[0].split()])
             sorted_elem.append(title)
             sorted_elem.append(elem[2])
-            sorted_elem.append("Closing: " + self.parse_date(elem[5])) # close date
+            sorted_elem.append(self.parse_today()) # close date
             sorted_elem.append(elem[1])
             sorted_output.append(sorted_elem)
         return sorted_output

@@ -8,11 +8,14 @@ TODO:
 
 -	data:
 	-	figure out date formatting so I know which postings are new
+		-	**this will require a persistent data solution of some kind**
 	-	(done!) refactor output lists for HTML templating
 -	presentation:
-	-	jinja templating to generate HTML
+	-	(kinda done!) jinja templating to generate HTML
 		-	https://realpython.com/blog/python/primer-on-jinja-templating/
 		-	http://flask.pocoo.org/docs/0.10/quickstart/
+	-	**how to make the table look nice?**
+	-	sorting the table/only showing new postings?
 	-	can this HTML be turned into email digest?
 		-	https://charlesleifer.com/blog/saturday-morning-hack-personalized-news-digest-with-boolean-query-parser/
 			-	http://huey.readthedocs.org/en/latest/
