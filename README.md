@@ -37,6 +37,8 @@ TODO:
 	-	BC Public Service
 -	jinja templating to generate HTML
 	-	refactor output so that all lists are same format/order
+	-	https://realpython.com/blog/python/primer-on-jinja-templating/
+	-	http://flask.pocoo.org/docs/0.10/quickstart/
 -	can this HTML be turned into email digest?
 -	future -> support for multiple users
 	-	some kind of frontend (flask?)
