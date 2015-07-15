@@ -11,12 +11,6 @@ def parse(org):
 
     data = org.make_data(soup)
 
-    job_table = soup.find(org.soup_find_list[0], org.soup_find_list[1])
-    rows = job_table.find_all('tr')
-    print rows[0]
-    print rows[3]
-    data = org.make_csv(rows)
-
     with open(org.csv_name, "wb") as FILE:
         writer = unicodecsv.writer(FILE, delimiter=",", encoding="utf-8")
         for row in data:
@@ -28,8 +22,9 @@ if __name__ == '__main__':
     #          , Orgs.Hamilton()
     #          , Orgs.Victoria()
     #          , Orgs.CRD()
+    #          , Orgs.OPS()
     #          ]
 
-    cities = [Orgs.OPS()]
+    cities = [Orgs.Toronto()]
     for c in cities:
         parse(c)

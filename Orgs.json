@@ -52,8 +52,8 @@
     "ops": {
         "request_url": "https://www.gojobs.gov.on.ca/Search.aspx?Language=English&rg=REGION-TRNT&cl=CAREERLEVEL-NOTSLCTD",
         "soup_find_list": [
-            "table", {
-                "class": "maintableSearch"
+            "span", {
+                "id": "rptSearchResult_ctl00_lblHeaderInfo"
             }
         ],
         "csv_name": "jobs_ops.csv",

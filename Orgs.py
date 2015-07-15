@@ -1,5 +1,9 @@
 import json
 
+def log(elem):
+    with open("log.html", "wb") as FILE:
+        FILE.write(elem)
+
 class Organization(object):
     def __init__(self, name):
         with open("Orgs.json") as FILE:
@@ -14,8 +18,7 @@ class Toronto(Organization):
         Organization.__init__(self, "toronto")
 
     def make_data(self, input_data):
-
-        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
         rows = job_table.find_all('tr')
 
         output_data = []
@@ -32,6 +35,8 @@ class Toronto(Organization):
                 cols.append("https://www.brainhunter.com/frontoffice/" + url['href'].encode('ascii'))
             output_data.append([elem for elem in cols if elem])
 
+        del output_data[0]
+        output_data.insert(0, ["Posting Date", "Job Title", "Division", "Job Type", "Job Location", "Job URL"])
         return output_data
 
 
@@ -41,8 +46,7 @@ class Hamilton(Organization):
 
     def make_data(self, input_data):
         output_data = []
-
-        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
         rows = job_table.find_all('tr')
 
         for row in rows:
@@ -62,8 +66,7 @@ class Mississauga(Organization):
 
     def make_data(self, input_data):
         output_data = []
-
-        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
         rows = job_table.find_all('tr')
 
         for row in rows:
@@ -80,14 +83,14 @@ class Mississauga(Organization):
 
         return output_data
 
+
 class Victoria(Organization):
     def __init__(self):
         Organization.__init__(self, "victoria")
 
     def make_data(self, input_data):
         output_data = []
-
-        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
         rows = job_table.find_all('tr')
         rows = input_data[1:]
 
@@ -107,14 +110,14 @@ class Victoria(Organization):
 
         return output_data
 
+
 class CRD(Organization):
     def __init__(self):
         Organization.__init__(self, "crd")
 
     def make_data(self, input_data):
         output_data = []
-
-        job_table = input_data.find(this.soup_find_list[0], this.soup_find_list[1])
+        job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
         rows = job_table.find_all('tr')
 
         for row in rows:
@@ -132,10 +135,37 @@ class CRD(Organization):
 
         return output_data
 
+
 class OPS(Organization):
     def __init__(self):
         Organization.__init__(self,"ops")
 
     def make_data(self, input_data):
+        job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
+        job_table = job_table.parent.table
+
+        rows = job_table.find_all('a')
+
         output_data = []
-        pass
+
+        for row in rows:
+            finished_row = []
+            title = row.text.encode('utf-8').strip()
+            finished_row.append(title)
+            finished_row.append("https://www.gojobs.gov.on.ca/" + row['href'].encode('utf-8'))
+
+            cols = row.parent.table
+            cols = cols.find_all('span')
+
+            odd = False
+            for col in cols:
+                if not odd:
+                    odd = not odd
+                    continue
+                odd = not odd
+                cleaned_string = col.text.encode('utf-8').strip()
+                finished_row.append(cleaned_string)
+            output_data.append(finished_row)
+
+        output_data.insert(0, ["Job Title", "Job URL", "Ministry", "Salary Range", "Location", "Closing Date"])
+        return output_data

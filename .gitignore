@@ -1,3 +1,13 @@
+#######################
+#######################
+# takeown /f C:\Users\Rob\Documents\_projects\python\gainful\.git\objects /r /d Y
+# Project specific
+*.csv
+log.html
+
+#######################
+#######################
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -55,6 +65,3 @@ docs/_build/
 
 # PyBuilder
 target/
-
-# Project specific
-*.csv
