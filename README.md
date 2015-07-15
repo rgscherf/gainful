@@ -12,10 +12,25 @@ TODO:
 		-	UofT
 		-	Ryerson
 		-	York
-	-	GTA nonprofits
+	-	GTA agencies
 		-	AMO
+		-	metrolinx
+		-	TTC
+		-	TRCA
 	-	OPS
+		-	jobs site
 	-	Island municipalities
+		-	victoria (done!)
+		-	CRD
+		-	saanich
+		-	oak bay
+		-	view royal
+		-	langford
+		-	capital regional district
+		-	esquimalt
+		-	colwood
+		-	sidney
+		-	sooke
 	-	CivicInfo.ca
 	-	BC Public Service
 -	database
