@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
-import unicodecsv
 from itertools import chain
-
 import orgs
+
+# import unicodecsv
 
 organizations = [ orgs.Toronto()
          , orgs.Hamilton()
@@ -20,7 +20,7 @@ def parse(org):
     data = org.make_data(soup)
     return data
 
-def main():
+def build_parse_list():
     source = []
 
     for o in organizations:
@@ -28,10 +28,9 @@ def main():
 
     flattened_list = list(chain.from_iterable(source))
 
-    with open("combined.csv", "wb") as FILE:
-        writer = unicodecsv.writer(FILE, delimiter=",", encoding="utf-8")
-        for row in flattened_list:
-            writer.writerow(row)
+    return flattened_list
 
-if __name__ == '__main__':
-    main()
+    # with open("combined.csv", "wb") as FILE:
+    #     writer = unicodecsv.writer(FILE, delimiter=",", encoding="utf-8")
+    #     for row in flattened_list:
+    #         writer.writerow(row)
