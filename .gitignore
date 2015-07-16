@@ -1,6 +1,9 @@
 #######################
 #######################
 # takeown /f C:\Users\Rob\Documents\_projects\python\gainful\.git\objects /r /d Y
+# or
+# sudo chown -R Rob .
+# 
 # Project specific
 *.csv
 log.html
