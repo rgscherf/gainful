@@ -13,28 +13,11 @@
 </head>
 
 <body>
+    <p>
+        Here is a link: {{linkzz}}
+    </p>
     <div>
-        <p>
-            Loop through list:
-        </p>
-        <table>
-            {% for n in data %}
-            <tr>
-                <td>
-                    {{n[0]}}
-                </td>
-                <td>
-                    <a href="{{n[4]}}">{{n[1]}}</a>
-                </td>
-                <td>
-                    {{n[2]}}
-                </td>
-                <td>
-                    {{n[3]}}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+        {{table}}
     </div>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>

@@ -6,13 +6,15 @@ import orgs
 
 # import unicodecsv
 
-organizations = [ orgs.Toronto()
-         , orgs.Hamilton()
-         , orgs.Mississauga()
-         , orgs.Victoria()
-         , orgs.CRD()
-         , orgs.OPS()
-         ]
+# organizations = [ orgs.Toronto()
+#          , orgs.Hamilton()
+#          , orgs.Mississauga()
+#          , orgs.Victoria()
+#          , orgs.CRD()
+#          , orgs.OPS()
+#          ]
+
+organizations = [ orgs.Toronto() ]
 
 def parse(org):
     r = requests.get(org.request_url)
