@@ -18,7 +18,7 @@ def log(t):
 
 class Organization(object):
     def __init__(self, name):
-        with open("orgs.json") as FILE:
+        with open("src/orgs.json") as FILE:
             d = json.load(FILE)
             self.request_url = d[name]["request_url"]
             self.soup_find_list = d[name]["soup_find_list"]

@@ -1,1 +1,4 @@
-INSTALLED_APPS=('orgs')
+INSTALLED_APPS=( 'src'
+               , 'orgs'
+               , 'parse'
+               )

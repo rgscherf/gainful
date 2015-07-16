@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 # from flask.ext.sqlalchemy import SQLAlchemy
-import parse
+from src import parse
 
 app = Flask(__name__)
 
