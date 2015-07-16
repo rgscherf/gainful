@@ -27,14 +27,29 @@ class Organization(object):
 
     def parse_date(self, date_string):
         date = dp.parse(date_string)
-        res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
+        if date.day < 10:
+            res = str(date.year) + "/" + str(date.month) + "/0" + str(date.day)
+        else:
+            res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
         return res
 
     def parse_today(self):
         date = datetime.date.today()
-        res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
+        if date.day < 10:
+            res = str(date.year) + "/" + str(date.month) + "/0" + str(date.day)
+        else:
+            res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
         return res
-        
+
+class Job(object):
+    def __init__(self, org="none", title="none", div="none", date="none", url="none"):
+        self.org = org
+        self.title = title
+        self.div = div
+        self.date = date
+        self.url = url
+
+
 class Toronto(Organization):
     def __init__(self):
         Organization.__init__(self, "toronto")
@@ -60,16 +75,11 @@ class Toronto(Organization):
         del output_data[0]
         # output_data.insert(0, ["Posting Date", "Job Title", "Division", "Job Type", "Job Location", "Job URL"])
 
-        sorted_output = []
+        processed_output = []
         for elem in output_data:
-            sorted_elem = []
-            sorted_elem.append(self.name)
-            sorted_elem.append(elem[1])
-            sorted_elem.append(elem[2])
-            sorted_elem.append(self.parse_date(elem[0])) # post date
-            sorted_elem.append(elem[5])
-            sorted_output.append(sorted_elem)
-        return sorted_output
+            job = Job(self.name, elem[1], elem[2], self.parse_date(elem[0]), elem[5])
+            processed_output.append(job)
+        return processed_output
 
 
 class Hamilton(Organization):
@@ -89,16 +99,11 @@ class Hamilton(Organization):
 
         # output_data.insert(0, ["Posting Date", "Job Title", "Job ID", "Department", "Job URL"])
 
-        sorted_output = []
+        processed_output = []
         for elem in output_data:
-            sorted_elem = []
-            sorted_elem.append(self.name)
-            sorted_elem.append(elem[1])
-            sorted_elem.append(elem[3])
-            sorted_elem.append(self.parse_date(elem[0])) # post date
-            sorted_elem.append(elem[4])
-            sorted_output.append(sorted_elem)
-        return sorted_output
+            job = Job(self.name, elem[1], elem[3], self.parse_date(elem[0]), elem[4])
+            processed_output.append(job)
+        return processed_output
 
 
 class Mississauga(Organization):
@@ -112,26 +117,17 @@ class Mississauga(Organization):
 
         first_row = True
         for row in rows:
-            row_data = []
-
             if first_row:
                 first_row = not first_row
                 continue
-
             date = row.find('td', 'iCIMS_JobsTableField_4').find_all('span')
             date = date[1].text.encode('utf-8').strip()
             title = row.find('a').text.encode('utf-8').strip()
             title = " ".join([word.capitalize() for word in title.split()])
             url = row.find('a')['href'].encode('utf-8')
 
-            row_data.append(self.name)
-            row_data.append(title)
-            row_data.append("City of Mississauga")
-            row_data.append(self.parse_date(date))
-            row_data.append(url)
-
-            output_data.append(row_data)
-
+            job = Job(self.name, title, "City of Mississauga", self.parse_date(date), url)
+            output_data.append(job)
         return output_data
 
 class Victoria(Organization):
@@ -154,16 +150,11 @@ class Victoria(Organization):
 
         # output_data.insert(0, ["Job Title", "Job ID", "Department", "Status", "Closing Date", "Apply", "Details", "Job URL"])
 
-        sorted_output = []
+        processed_output = []
         for elem in output_data:
-            sorted_elem = []
-            sorted_elem.append(self.name)
-            sorted_elem.append(elem[0])
-            sorted_elem.append(elem[2])
-            sorted_elem.append(self.parse_today()) # close date
-            sorted_elem.append(elem[7])
-            sorted_output.append(sorted_elem)
-        return sorted_output
+            job = Job(self.name, elem[0], elem[2], self.parse_today(), elem[7])
+            processed_output.append(job)
+        return processed_output
 
 
 class CRD(Organization):
@@ -189,16 +180,11 @@ class CRD(Organization):
             del elem[2]
         # output_data.insert(0, ["Job Title", "Closing Date", "Job URL"])
 
-        sorted_output = []
+        processed_output = []
         for elem in output_data:
-            sorted_elem = []
-            sorted_elem.append(self.name)
-            sorted_elem.append(elem[0])
-            sorted_elem.append("Capital Regional District")
-            sorted_elem.append(self.parse_today()) # close date
-            sorted_elem.append(elem[2])
-            sorted_output.append(sorted_elem)
-        return sorted_output
+            job = Job(self.name, elem[0], "Capital Regional District", self.parse_today(), elem[2])
+            processed_output.append(job)
+        return processed_output
 
 
 class OPS(Organization):
@@ -234,14 +220,9 @@ class OPS(Organization):
 
         # output_data.insert(0, ["Job Title", "Job URL", "Ministry", "Salary Range", "Location", "Closing Date"])
 
-        sorted_output = []
+        processed_output = []
         for elem in output_data:
-            sorted_elem = []
-            sorted_elem.append(self.name)
             title = " ".join([word.capitalize() for word in elem[0].split()])
-            sorted_elem.append(title)
-            sorted_elem.append(elem[2])
-            sorted_elem.append(self.parse_today()) # close date
-            sorted_elem.append(elem[1])
-            sorted_output.append(sorted_elem)
-        return sorted_output
+            job = Job(self.name, title, elem[2], self.parse_today(), elem[1])
+            processed_output.append(job)
+        return processed_output

@@ -7,7 +7,6 @@
             }
         ],
         "csv_name": "jobs_toronto.csv",
-        "tags": ["municipal", "ontario", "government"],
         "name": "Toronto"
     },
     "hamilton": {
@@ -18,7 +17,6 @@
             }
         ],
         "csv_name": "jobs_hamilton.csv",
-        "tags": ["municipal", "ontario", "government"],
         "name": "Hamilton"
     },
     "mississauga": {
@@ -29,7 +27,6 @@
             }
         ],
         "csv_name": "jobs_mississauga.csv",
-        "tags": ["municipal", "ontario", "government"],
         "name": "Mississauga"
     },
     "victoria": {
@@ -40,7 +37,6 @@
             }
         ],
         "csv_name": "jobs_victoria.csv",
-        "tags": ["municipal", "BC", "government"],
         "name": "Victoria"
     },
     "crd": {
@@ -51,8 +47,7 @@
             }
         ],
         "csv_name": "jobs_crd.csv",
-        "tags": ["municipal", "BC", "government"],
-        "name": "Capital Regional District"
+        "name": "CRD"
     },
     "ops": {
         "request_url": "https://www.gojobs.gov.on.ca/Search.aspx?Language=English&rg=REGION-TRNT&cl=CAREERLEVEL-NOTSLCTD",
@@ -62,7 +57,6 @@
             }
         ],
         "csv_name": "jobs_ops.csv",
-        "tags": ["provincial", "ontario", "government"],
-        "name": "Ontario Public Service"
+        "name": "OPS"
     }
 }
