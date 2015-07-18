@@ -30,7 +30,8 @@ def build_parse_list():
     return flattened_list
 
 def debug():
-    print "running in debug mode..."
+    print "Running in debug mode with no output."
+    print "Use your own printing/logging!"
     data = build_parse_list()
 
 
