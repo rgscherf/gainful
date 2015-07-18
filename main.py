@@ -9,7 +9,8 @@ app = Flask(__name__)
 def template_test():
     data = parse.build_parse_list()
     size = str(sys.getsizeof(data))
-    return render_template('template_test.html', data=data, size=size)
+    length = str(len(data))
+    return render_template('template_test.html', data=data, size=size, length=length)
 
 if __name__ == '__main__':
     app.run()

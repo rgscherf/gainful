@@ -34,25 +34,13 @@ TODO:
 		-	York
 	-	GTA agencies
 		-	AMO
-		-	metrolinx
+		-	Metrolinx
 		-	TTC
 		-	TRCA
 	-	Ontario public service
 		-	(done!) OPS
-		-	Ontario AG
-		-	Ontario OIPC
 	-	Island municipalities
-		-	(done!) victoria
-		-	(done!) CRD
-		-	saanich
-		-	oak bay
-		-	view royal
-		-	langford
-		-	capital regional district
-		-	esquimalt
-		-	colwood
-		-	sidney
-		-	sooke
-	-	CivicInfo.ca
-	-	BC Public Service
-		-	Government https://search.employment.gov.bc.ca/cgi-bin/a/searchjobs_quick.cgi?a=search&page=1&search=Search%20Jobs&keywords_or=&region=Greater%20Victoria&order=job_id%20ASC
+		-	(done!) Victoria
+		-	(done!) CRD *(is this covered by civicinfo?)*
+	-	(done!) CivicInfo.ca
+	-	(done!) BC Public Service

@@ -3,16 +3,19 @@ from itertools import chain
 import requests
 import orgs
 
+#removed (covered by civicinfo...)
+#          , orgs.Victoria()
+
 organizations = [ orgs.Toronto()
          , orgs.Hamilton()
          , orgs.Mississauga()
-         , orgs.Victoria()
          , orgs.CRD()
          , orgs.OPS()
          , orgs.BCPS()
+         , orgs.CivicInfo()
          ]
 
-# organizations = [ orgs.BCPS() ]
+# organizations = [ orgs.CivicInfo() ]
 
 def parse(org):
     r = requests.get(org.request_url)

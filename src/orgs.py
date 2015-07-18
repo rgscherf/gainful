@@ -48,6 +48,16 @@ class Organization(object):
             else:
                 return r
 
+    def takewhile(self, p, l):
+        # add to list while predicate is true
+        r = ""
+        for e in l:
+            if p(e):
+                r = r + e
+            else:
+                return r
+        return r
+
 
 class Job(object):
     def __init__(self, org="none", title="none", div="none", date="none", url="none"):
@@ -265,6 +275,50 @@ class BCPS(Organization):
             date = self.parse_date(cols[5].text.encode('utf-8').strip())
 
             job = Job(self.name, title, div, date, url)
+            output_data.append(job)
+
+        return output_data
+
+class CivicInfo(Organization):
+    def __init__(self):
+        Organization.__init__(self, "civicinfo")
+
+    def unpad_date(self, string):
+        r = string
+        r = self.dropwhile(lambda x: x != "(", string)
+        r = r[1:]
+        r = self.takewhile(lambda x: x != ")", r)
+        return r
+
+    def pack_date(self, string):
+        s = self.dropwhile(lambda x: x != ":", string)
+        s = s[2:]
+        s = s.split(", ")
+        s = s[0:2]
+        r = " ".join(s)
+        r = self.parse_date(r)
+        return r
+
+    def make_data(self, input_data):
+
+        job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
+        log(job_table)
+        rows = job_table.find_all('li')
+
+        output_data = []
+        for row in rows:
+            url = "http://www.civicinfo.bc.ca/" + row.find('a')['href']
+            org_suffix = row.a.b.i.text.encode('utf-8').strip()
+            row.i.decompose()
+            title = row.a.b.text.encode('utf-8').strip()[:-2]
+
+            date_text = row.find('br').nextSibling.strip()
+            date_unformatted = self.unpad_date(date_text)
+            date = self.pack_date(date_unformatted)
+
+            org = self.name + org_suffix
+
+            job = Job(org, title, org_suffix, date, url)
             output_data.append(job)
 
         return output_data

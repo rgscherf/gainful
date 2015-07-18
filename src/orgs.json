@@ -68,5 +68,15 @@
         ],
         "csv_name": "jobs_bcps.csv",
         "name": "BC Public Service"
+    },
+    "civicinfo": {
+        "request_url": "http://www.civicinfo.bc.ca/careers?stext=&type=ss&region=11&location=+&procat=+#sresults",
+        "soup_find_list": [
+            "ol", {
+                "start": "1"
+            }
+        ],
+        "csv_name": "jobs_civicinfo.csv",
+        "name": "CivicInfo: "
     }
 }
