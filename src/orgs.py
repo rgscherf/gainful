@@ -7,8 +7,8 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 ################################################################################
-# OUTPUT FORMAT
-# ["Organization", "Job Title", "Division/Ministry", "Posting Date", "URL"]
+# OUTPUT FORMAT:
+# Job with fields: org[anization], [job] title, div[ision], [posting] date, [posting] url
 ################################################################################
 
 def log(t):
@@ -26,19 +26,16 @@ class Organization(object):
             self.name = d[name]["name"]
 
     def parse_date(self, date_string):
-        date = dp.parse(date_string)
-        if date.day < 10:
-            res = str(date.year) + "/" + str(date.month) + "/0" + str(date.day)
+        if date_string == "":
+            date = datetime.date.today()
         else:
-            res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
-        return res
+            date = dp.parse(date_string)
 
-    def parse_today(self):
-        date = datetime.date.today()
         if date.day < 10:
             res = str(date.year) + "/" + str(date.month) + "/0" + str(date.day)
         else:
             res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
+
         return res
 
     def dropwhile(self, p, l):
@@ -163,7 +160,7 @@ class Victoria(Organization):
 
         processed_output = []
         for elem in output_data:
-            job = Job(self.name, elem[0], elem[2], self.parse_today(), elem[7])
+            job = Job(self.name, elem[0], elem[2], self.parse_date(""), elem[7])
             processed_output.append(job)
         return processed_output
 
@@ -193,7 +190,7 @@ class CRD(Organization):
 
         processed_output = []
         for elem in output_data:
-            job = Job(self.name, elem[0], "Capital Regional District", self.parse_today(), elem[2])
+            job = Job(self.name, elem[0], "Capital Regional District", self.parse_date(""), elem[2])
             processed_output.append(job)
         return processed_output
 
@@ -234,7 +231,7 @@ class OPS(Organization):
         processed_output = []
         for elem in output_data:
             title = " ".join([word.capitalize() for word in elem[0].split()])
-            job = Job(self.name, title, elem[2], self.parse_today(), elem[1])
+            job = Job(self.name, title, elem[2], self.parse_date(""), elem[1])
             processed_output.append(job)
         return processed_output
 
@@ -261,6 +258,7 @@ class BCPS(Organization):
         for row in rows:
             url = "https://search.employment.gov.bc.ca" + row.find('a')['href']
             cols = row.find_all('td')
+
             div = cols[0].text.encode('utf-8').strip()
             padded_title = cols[2].text.encode('utf-8').strip()
             title = self.unpad_title(padded_title)
