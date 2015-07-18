@@ -9,9 +9,10 @@ organizations = [ orgs.Toronto()
          , orgs.Victoria()
          , orgs.CRD()
          , orgs.OPS()
+         , orgs.BCPS()
          ]
 
-# organizations = [ orgs.Toronto() ]
+# organizations = [ orgs.BCPS() ]
 
 def parse(org):
     r = requests.get(org.request_url)
@@ -27,3 +28,11 @@ def build_parse_list():
     flattened_list = list(chain.from_iterable(source))
 
     return flattened_list
+
+def debug():
+    print "running in debug mode..."
+    data = build_parse_list()
+
+
+if __name__ == '__main__':
+    debug()

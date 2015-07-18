@@ -41,6 +41,17 @@ class Organization(object):
             res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
         return res
 
+    def dropwhile(self, p, l):
+        r = l
+        for e in l:
+            if len(r) == 0:
+                return ''
+            if p(e):
+                r = r[1:]
+            else:
+                return r
+
+
 class Job(object):
     def __init__(self, org="none", title="none", div="none", date="none", url="none"):
         self.org = org
@@ -189,7 +200,7 @@ class CRD(Organization):
 
 class OPS(Organization):
     def __init__(self):
-        Organization.__init__(self,"ops")
+        Organization.__init__(self, "ops")
 
     def make_data(self, input_data):
         job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
@@ -226,3 +237,36 @@ class OPS(Organization):
             job = Job(self.name, title, elem[2], self.parse_today(), elem[1])
             processed_output.append(job)
         return processed_output
+
+class BCPS(Organization):
+    def __init__(self):
+        Organization.__init__(self, "bcps")
+
+    def unpad_title(self, string):
+        if "-" in string:
+            r = self.dropwhile(lambda x: x != " ", string)
+            r = self.dropwhile(lambda x: x != "-", r)
+            r = self.dropwhile(lambda x: x != " ", r)
+            r = r[1:]
+        else:
+            r = string
+        return r
+
+    def make_data(self, input_data):
+
+        job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
+        rows = job_table.find_all('tr', 'tdcolor')
+
+        output_data = []
+        for row in rows:
+            url = "https://search.employment.gov.bc.ca" + row.find('a')['href']
+            cols = row.find_all('td')
+            div = cols[0].text.encode('utf-8').strip()
+            padded_title = cols[2].text.encode('utf-8').strip()
+            title = self.unpad_title(padded_title)
+            date = self.parse_date(cols[5].text.encode('utf-8').strip())
+
+            job = Job(self.name, title, div, date, url)
+            output_data.append(job)
+
+        return output_data

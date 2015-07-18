@@ -58,5 +58,15 @@
         ],
         "csv_name": "jobs_ops.csv",
         "name": "OPS"
+    },
+    "bcps": {
+        "request_url": "https://search.employment.gov.bc.ca/cgi-bin/a/searchjobs_quick.cgi?a=search&page=1&search=Search%20Jobs&keywords_or=&region=Greater%20Victoria&order=open_date%20ASC&order=open_date&dir=DESC",
+        "soup_find_list": [
+            "table", {
+                "class": "tableline resultstable"
+            }
+        ],
+        "csv_name": "jobs_bcps.csv",
+        "name": "BC Public Service"
     }
 }
