@@ -11,10 +11,12 @@ sys.setdefaultencoding('utf-8')
 # Job with fields: org[anization], [job] title, div[ision], [posting] date, [posting] url
 ################################################################################
 
+
 def log(t):
     t = t.prettify().encode('utf-8')
     with open("log.html", "wb") as FILE:
         FILE.write(t)
+
 
 class Organization(object):
     def __init__(self, name):
@@ -148,6 +150,7 @@ class Mississauga(Organization):
             output_data.append(job)
         return output_data
 
+
 class Victoria(Organization):
     def __init__(self):
         Organization.__init__(self, "victoria")
@@ -245,6 +248,7 @@ class OPS(Organization):
             processed_output.append(job)
         return processed_output
 
+
 class BCPS(Organization):
     def __init__(self):
         Organization.__init__(self, "bcps")
@@ -278,6 +282,7 @@ class BCPS(Organization):
             output_data.append(job)
 
         return output_data
+
 
 class CivicInfo(Organization):
     def __init__(self):
@@ -319,6 +324,40 @@ class CivicInfo(Organization):
             org = self.name + org_suffix
 
             job = Job(org, title, org_suffix, date, url)
+            output_data.append(job)
+
+        return output_data
+
+
+class AMCTO(Organization):
+    def __init__(self):
+        Organization.__init__(self, "amcto")
+
+    def clean_url_text(self, string):
+        string = self.dropwhile(lambda x: x != "C", string)
+        return "http://www.amcto.com/imis15/content/" + string
+
+    def extract_org_title(self, string):
+        split = string.split(" - ")
+        div = split[0]
+        title = split[1]
+        return div, title
+
+    def make_data(self, input_data):
+        job_table = input_data.find(self.soup_find_list[0], self.soup_find_list[1])
+        rows = job_table.find_all("table")
+
+        output_data = []
+        for row in rows:
+            text = row.a
+            url = text['href'].encode('utf-8')
+            url = self.clean_url_text(url)
+            text = text.text.encode('utf-8')
+            div, title = self.extract_org_title(text)
+            date = self.parse_date(row.span.span.span.text.encode('utf-8'))
+            name = self.name + div
+
+            job = Job(name, title, div, date, url)
             output_data.append(job)
 
         return output_data

@@ -78,5 +78,15 @@
         ],
         "csv_name": "jobs_civicinfo.csv",
         "name": "CivicInfo: "
+    },
+    "amcto": {
+        "request_url": "http://www.amcto.com/imis15/content/Careers/Municipal_Career_Opportunities/content/Careers_Pages/Career_opportunities.aspx?hkey=fe69cc3d-3946-4ab8-8879-b083c4f89b80",
+        "soup_find_list": [
+            "div", {
+                "class": "TaggedListPanel"
+            }
+        ],
+        "csv_name": "jobs_amcto.csv",
+        "name": "AMCTO: "
     }
 }

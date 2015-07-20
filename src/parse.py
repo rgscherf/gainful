@@ -13,9 +13,11 @@ organizations = [ orgs.Toronto()
          , orgs.OPS()
          , orgs.BCPS()
          , orgs.CivicInfo()
+         , orgs.AMCTO()
          ]
 
-# organizations = [ orgs.CivicInfo() ]
+# organizations = [ orgs.AMCTO() ]
+
 
 def parse(org):
     r = requests.get(org.request_url)
@@ -24,6 +26,7 @@ def parse(org):
     data = org.make_data(soup)
     return data
 
+
 def build_parse_list():
     source = []
     for o in organizations:
@@ -31,6 +34,7 @@ def build_parse_list():
     flattened_list = list(chain.from_iterable(source))
 
     return flattened_list
+
 
 def debug():
     print "Running in debug mode with no output."
