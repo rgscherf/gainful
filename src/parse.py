@@ -8,6 +8,7 @@ import redis
 
 rserver = redis.Redis("localhost")
 
+
 #removed (covered by civicinfo...)
 #          , orgs.Victoria()
 
