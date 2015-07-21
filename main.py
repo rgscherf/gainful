@@ -2,18 +2,32 @@ from flask import Flask, render_template
 # from flask.ext.sqlalchemy import SQLAlchemy
 from src import parse
 import sys
+import operator
+import redis
+
 
 app = Flask(__name__)
 
+
+rserver = redis.Redis("localhost")
+
+
 @app.route("/")
 def template_test():
-    data = parse.build_parse_list()
+    keys = rserver.keys()
+
+    data = []
+    for k in keys:
+        h = rserver.hgetall(k)
+        data.append(h)
+    data = sorted(data, key=operator.itemgetter('date'))
+    data.reverse()
+
     size = str(sys.getsizeof(data))
-    length = str(len(data))
+    length = str(len(keys))
+
     return render_template('template_test.html', data=data, size=size, length=length)
 
-if __name__ == '__main__':
-    app.run()
 
-## https://realpython.com/blog/python/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
-## https://realpython.com/blog/python/flask-by-example-part-1-project-setup/
+if __name__ == '__main__':
+    app.run(debug=True)

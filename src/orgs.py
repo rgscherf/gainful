@@ -9,6 +9,7 @@ sys.setdefaultencoding('utf-8')
 ################################################################################
 # OUTPUT FORMAT:
 # Job with fields: org[anization], [job] title, div[ision], [posting] date, [posting] url
+# REDIS KEY IS "ORG:TITLE:URL"
 ################################################################################
 
 
@@ -62,12 +63,13 @@ class Organization(object):
 
 
 class Job(object):
-    def __init__(self, org="none", title="none", div="none", date="none", url="none"):
+    def __init__(self, org="none", title="none", div="none", date="none", url="none", key="none"):
         self.org = org
         self.title = title
         self.div = div
         self.date = date
         self.url = url
+        self.key = key
 
 
 class Toronto(Organization):
@@ -97,7 +99,8 @@ class Toronto(Organization):
 
         processed_output = []
         for elem in output_data:
-            job = Job(self.name, elem[1], elem[2], self.parse_date(elem[0]), elem[5])
+            key = "{}:{}:{}".format(self.name, elem[1], elem[5])
+            job = Job(self.name, elem[1], elem[2], self.parse_date(elem[0]), elem[5], key)
             processed_output.append(job)
         return processed_output
 
@@ -121,7 +124,8 @@ class Hamilton(Organization):
 
         processed_output = []
         for elem in output_data:
-            job = Job(self.name, elem[1], elem[3], self.parse_date(elem[0]), elem[4])
+            key = "{}:{}:{}".format(self.name, elem[1], elem[4])
+            job = Job(self.name, elem[1], elem[3], self.parse_date(elem[0]), elem[4], key)
             processed_output.append(job)
         return processed_output
 
@@ -146,7 +150,8 @@ class Mississauga(Organization):
             title = " ".join([word.capitalize() for word in title.split()])
             url = row.find('a')['href'].encode('utf-8')
 
-            job = Job(self.name, title, "City of Mississauga", self.parse_date(date), url)
+            key = "{}:{}:{}".format(self.name, title, url)
+            job = Job(self.name, title, "City of Mississauga", self.parse_date(date), url, key)
             output_data.append(job)
         return output_data
 
@@ -173,7 +178,8 @@ class Victoria(Organization):
 
         processed_output = []
         for elem in output_data:
-            job = Job(self.name, elem[0], elem[2], self.parse_date(""), elem[7])
+            key = "{}:{}:{}".format(self.name, elem[01], elem[7])
+            job = Job(self.name, elem[0], elem[2], self.parse_date(""), elem[7], key)
             processed_output.append(job)
         return processed_output
 
@@ -203,7 +209,8 @@ class CRD(Organization):
 
         processed_output = []
         for elem in output_data:
-            job = Job(self.name, elem[0], "Capital Regional District", self.parse_date(""), elem[2])
+            key = "{}:{}:{}".format(self.name, elem[0], elem[2])
+            job = Job(self.name, elem[0], "Capital Regional District", self.parse_date(""), elem[2], key)
             processed_output.append(job)
         return processed_output
 
@@ -244,7 +251,8 @@ class OPS(Organization):
         processed_output = []
         for elem in output_data:
             title = " ".join([word.capitalize() for word in elem[0].split()])
-            job = Job(self.name, title, elem[2], self.parse_date(""), elem[1])
+            key = "{}:{}:{}".format(self.name, title, elem[1])
+            job = Job(self.name, title, elem[2], self.parse_date(""), elem[1], key)
             processed_output.append(job)
         return processed_output
 
@@ -278,7 +286,8 @@ class BCPS(Organization):
             title = self.unpad_title(padded_title)
             date = self.parse_date(cols[5].text.encode('utf-8').strip())
 
-            job = Job(self.name, title, div, date, url)
+            key = "{}:{}:{}".format(self.name, title, url)
+            job = Job(self.name, title, div, date, url, key)
             output_data.append(job)
 
         return output_data
@@ -323,7 +332,8 @@ class CivicInfo(Organization):
 
             org = self.name + org_suffix
 
-            job = Job(org, title, org_suffix, date, url)
+            key = "{}:{}:{}".format(org, title, url)
+            job = Job(org, title, org_suffix, date, url, key)
             output_data.append(job)
 
         return output_data
@@ -357,7 +367,8 @@ class AMCTO(Organization):
             date = self.parse_date(row.span.span.span.text.encode('utf-8'))
             name = self.name + div
 
-            job = Job(name, title, div, date, url)
+            key = "{}:{}:{}".format(self.name, title, url)
+            job = Job(name, title, div, date, url, key)
             output_data.append(job)
 
         return output_data

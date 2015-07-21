@@ -58,16 +58,16 @@
             {% for r in data %}
             <tr>
                 <td>
-                    {{ r.org }}
+                    {{ r["org"] }}
                 </td>
                 <td>
-                    <a href={{ r.url }}>{{ r.title }}</a>
+                    <a href={{ r["url"] }}>{{ r["title"] }}</a>
                 </td>
                 <td>
-                    {{ r.div }}
+                    {{ r["div"] }}
                 </td>
                 <td>
-                    {{ r.date }}
+                    {{ r["date"] }}
                 </td>
             </tr>
             {% endfor %}
