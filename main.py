@@ -5,6 +5,9 @@ import redis
 import os
 import logging
 
+import src.orgs as orgs
+import datetime
+
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -17,8 +20,19 @@ app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 
 
+def build_data_by_tag(tag):
+    keys = rserver.keys()
+    data = []
+    for k in keys:
+        h = rserver.hgetall(k)
+        if tag in h["tags"]:
+            data.append(h)
+    data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
+    return data
+
+
 @app.route("/")
-def template_test():
+def jobs_all():
     keys = rserver.keys()
 
     data = []
@@ -30,8 +44,34 @@ def template_test():
     size = str(sys.getsizeof(data))
     length = str(len(keys))
 
-    return render_template('template_test.html', data=data, size=size, length=length)
+    return render_template('jobs_all.html', data=data, size=size, length=length)
 
+@app.route("/bc")
+def jobs_bc():
+    data = build_data_by_tag("bc")
+    return render_template('jobs_bc.html', data=data)
+
+
+@app.route("/ontario")
+def jobs_ontario():
+    data = build_data_by_tag("ontario")
+    return render_template('jobs_ontario.html', data=data)
+
+@app.route("/new")
+def jobs_new():
+    today = orgs.parse_date_object(datetime.date.today())
+    yesterday = datetime.date.today() - datetime.timedelta(days=1)
+    yesterday = orgs.parse_date_object(yesterday)
+
+    keys = rserver.keys()
+    data = []
+    for k in keys:
+        h = rserver.hgetall(k)
+        if h["date"] == today or h["date"] == yesterday:
+            data.append(h)
+    data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
+
+    return render_template('jobs_ontario.html', data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)

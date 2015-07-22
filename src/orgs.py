@@ -18,6 +18,23 @@ def log(t):
     with open("log.html", "wb") as FILE:
         FILE.write(t)
 
+def parse_date(date_string):
+    if date_string == "":
+        date = datetime.date.today()
+    else:
+        date = dp.parse(date_string)
+    if date.day < 10:
+        res = str(date.year) + "/" + str(date.month) + "/0" + str(date.day)
+    else:
+        res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
+    return res
+
+def parse_date_object(date):
+    if date.day < 10:
+        res = str(date.year) + "/" + str(date.month) + "/0" + str(date.day)
+    else:
+        res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
+    return res
 
 class Organization(object):
     def __init__(self, name):
@@ -27,19 +44,6 @@ class Organization(object):
             self.soup_find_list = d[name]["soup_find_list"]
             self.csv_name = d[name]["csv_name"]
             self.name = d[name]["name"]
-
-    def parse_date(self, date_string):
-        if date_string == "":
-            date = datetime.date.today()
-        else:
-            date = dp.parse(date_string)
-
-        if date.day < 10:
-            res = str(date.year) + "/" + str(date.month) + "/0" + str(date.day)
-        else:
-            res = str(date.year) + "/" + str(date.month) + "/" + str(date.day)
-
-        return res
 
     def dropwhile(self, p, l):
         r = l
@@ -63,13 +67,14 @@ class Organization(object):
 
 
 class Job(object):
-    def __init__(self, org="none", title="none", div="none", date="none", url="none", key="none"):
+    def __init__(self, org, title, div, date, url, key, tags):
         self.org = org
         self.title = title
         self.div = div
         self.date = date
         self.url = url
         self.key = key
+        self.tags = tags
 
 
 class Toronto(Organization):
@@ -97,10 +102,11 @@ class Toronto(Organization):
         del output_data[0]
         # output_data.insert(0, ["Posting Date", "Job Title", "Division", "Job Type", "Job Location", "Job URL"])
 
+        tags = ["municipal", "ontario"]
         processed_output = []
         for elem in output_data:
             key = "{}:{}:{}".format(self.name, elem[1], elem[5])
-            job = Job(self.name, elem[1], elem[2], self.parse_date(elem[0]), elem[5], key)
+            job = Job(self.name, elem[1], elem[2], parse_date(elem[0]), elem[5], key, tags)
             processed_output.append(job)
         return processed_output
 
@@ -122,10 +128,11 @@ class Hamilton(Organization):
 
         # output_data.insert(0, ["Posting Date", "Job Title", "Job ID", "Department", "Job URL"])
 
+        tags = ["municipal", "ontario"]
         processed_output = []
         for elem in output_data:
             key = "{}:{}:{}".format(self.name, elem[1], elem[4])
-            job = Job(self.name, elem[1], elem[3], self.parse_date(elem[0]), elem[4], key)
+            job = Job(self.name, elem[1], elem[3], parse_date(elem[0]), elem[4], key, tags)
             processed_output.append(job)
         return processed_output
 
@@ -150,8 +157,9 @@ class Mississauga(Organization):
             title = " ".join([word.capitalize() for word in title.split()])
             url = row.find('a')['href'].encode('utf-8')
 
+            tags = ["municipal", "ontario"]
             key = "{}:{}:{}".format(self.name, title, url)
-            job = Job(self.name, title, "City of Mississauga", self.parse_date(date), url, key)
+            job = Job(self.name, title, "City of Mississauga", parse_date(date), url, key, tags)
             output_data.append(job)
         return output_data
 
@@ -177,9 +185,10 @@ class Victoria(Organization):
         # output_data.insert(0, ["Job Title", "Job ID", "Department", "Status", "Closing Date", "Apply", "Details", "Job URL"])
 
         processed_output = []
+        tags = ["municipal", "bc"]
         for elem in output_data:
             key = "{}:{}:{}".format(self.name, elem[01], elem[7])
-            job = Job(self.name, elem[0], elem[2], self.parse_date(""), elem[7], key)
+            job = Job(self.name, elem[0], elem[2], parse_date(""), elem[7], key, tags)
             processed_output.append(job)
         return processed_output
 
@@ -208,9 +217,10 @@ class CRD(Organization):
         # output_data.insert(0, ["Job Title", "Closing Date", "Job URL"])
 
         processed_output = []
+        tags = ["municipal", "bc"]
         for elem in output_data:
             key = "{}:{}:{}".format(self.name, elem[0], elem[2])
-            job = Job(self.name, elem[0], "Capital Regional District", self.parse_date(""), elem[2], key)
+            job = Job(self.name, elem[0], "Capital Regional District", parse_date(""), elem[2], key, tags)
             processed_output.append(job)
         return processed_output
 
@@ -248,11 +258,12 @@ class OPS(Organization):
 
         # output_data.insert(0, ["Job Title", "Job URL", "Ministry", "Salary Range", "Location", "Closing Date"])
 
+        tags = ["provincial", "ontario"]
         processed_output = []
         for elem in output_data:
             title = " ".join([word.capitalize() for word in elem[0].split()])
             key = "{}:{}:{}".format(self.name, title, elem[1])
-            job = Job(self.name, title, elem[2], self.parse_date(""), elem[1], key)
+            job = Job(self.name, title, elem[2], parse_date(""), elem[1], key, tags)
             processed_output.append(job)
         return processed_output
 
@@ -277,6 +288,7 @@ class BCPS(Organization):
         rows = job_table.find_all('tr', 'tdcolor')
 
         output_data = []
+        tags = ["provincial", "bc"]
         for row in rows:
             url = "https://search.employment.gov.bc.ca" + row.find('a')['href']
             cols = row.find_all('td')
@@ -284,10 +296,10 @@ class BCPS(Organization):
             div = cols[0].text.encode('utf-8').strip()
             padded_title = cols[2].text.encode('utf-8').strip()
             title = self.unpad_title(padded_title)
-            date = self.parse_date(cols[5].text.encode('utf-8').strip())
+            date = parse_date(cols[5].text.encode('utf-8').strip())
 
             key = "{}:{}:{}".format(self.name, title, url)
-            job = Job(self.name, title, div, date, url, key)
+            job = Job(self.name, title, div, date, url, key, tags)
             output_data.append(job)
 
         return output_data
@@ -310,7 +322,7 @@ class CivicInfo(Organization):
         s = s.split(", ")
         s = s[0:2]
         r = " ".join(s)
-        r = self.parse_date(r)
+        r = parse_date(r)
         return r
 
     def make_data(self, input_data):
@@ -332,8 +344,9 @@ class CivicInfo(Organization):
 
             org = self.name + org_suffix
 
+            tags = ["municipal", "bc"]
             key = "{}:{}:{}".format(org, title, url)
-            job = Job(org, title, org_suffix, date, url, key)
+            job = Job(org, title, org_suffix, date, url, key, tags)
             output_data.append(job)
 
         return output_data
@@ -364,11 +377,12 @@ class AMCTO(Organization):
             url = self.clean_url_text(url)
             text = text.text.encode('utf-8')
             div, title = self.extract_org_title(text)
-            date = self.parse_date(row.span.span.span.text.encode('utf-8'))
+            date = parse_date(row.span.span.span.text.encode('utf-8'))
             name = self.name + div
 
+            tags = ["municipal", "ontario"]
             key = "{}:{}:{}".format(self.name, title, url)
-            job = Job(name, title, div, date, url, key)
+            job = Job(name, title, div, date, url, key, tags)
             output_data.append(job)
 
         return output_data

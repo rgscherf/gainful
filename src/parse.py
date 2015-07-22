@@ -59,6 +59,7 @@ def update_redis(jobs):
                                    , "div": job.div
                                    , "date": job.date
                                    , "url": job.url
+                                   , "tags": job.tags
                                    })
             print "made new redis key: {}".format(job.key)
     if no_new_jobs:
