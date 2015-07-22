@@ -6,6 +6,9 @@ import os
 
 app = Flask(__name__)
 
+url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
+rserver = redis.from_url(url)
+
 # r_url = os.environ['REDIS_URL']
 # rserver = redis.Redis(r_url)
 # rserver = redis.Redis("redis://h:pap3shmob8jvb126nmbvaojr44d@ec2-54-83-33-255.compute-1.amazonaws.com:11019")
@@ -29,6 +32,4 @@ def template_test():
 
 
 if __name__ == '__main__':
-    url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
-    rserver = redis.from_url(url)
-    app.run()
+    app.run(debug=True)
