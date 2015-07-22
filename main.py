@@ -5,6 +5,8 @@ import redis
 import os
 import logging
 
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 app = Flask(__name__)
 

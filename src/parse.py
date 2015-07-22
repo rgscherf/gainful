@@ -3,9 +3,12 @@ from itertools import chain
 import requests
 import orgs
 import os
+import sys
 
 import redis
 
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
 rserver = redis.from_url(url)
