@@ -49,8 +49,11 @@ def build_parse_list():
 
 
 def update_redis(jobs):
+    no_new_jobs = True
     for job in jobs:
         if rserver.hlen(job.key) == 0:
+            if no_new_jobs:
+                no_new_jobs = False
             rserver.hmset(job.key, { "org": job.org
                                    , "title": job.title
                                    , "div": job.div
@@ -58,6 +61,8 @@ def update_redis(jobs):
                                    , "url": job.url
                                    })
             print "made new redis key: {}".format(job.key)
+    if no_new_jobs:
+        print "No new job postings :("
 
 def update():
     print "Updating redis DB:"
