@@ -71,7 +71,7 @@ def jobs_new():
             data.append(h)
     data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
 
-    return render_template('jobs_ontario.html', data=data)
+    return render_template('jobs_new.html', data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
