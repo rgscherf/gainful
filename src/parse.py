@@ -2,11 +2,13 @@ from bs4 import BeautifulSoup
 from itertools import chain
 import requests
 import orgs
+import os
 
 import redis
 
-
-rserver = redis.Redis("redis://h:pap3shmob8jvb126nmbvaojr44d@ec2-54-83-33-255.compute-1.amazonaws.com:11019")
+r_url = os.environ['REDIS_URL']
+rserver = redis.Redis(r_url)
+# rserver = redis.Redis("redis://h:pap3shmob8jvb126nmbvaojr44d@ec2-54-83-33-255.compute-1.amazonaws.com:11019")
 
 
 #removed (covered by civicinfo...)

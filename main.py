@@ -1,15 +1,14 @@
 from flask import Flask, render_template
-# from flask.ext.sqlalchemy import SQLAlchemy
-from src import parse
 import sys
 import operator
 import redis
-
+import os
 
 app = Flask(__name__)
 
-
-rserver = redis.Redis("redis://h:pap3shmob8jvb126nmbvaojr44d@ec2-54-83-33-255.compute-1.amazonaws.com:11019")
+r_url = os.environ['REDIS_URL']
+rserver = redis.Redis(r_url)
+# rserver = redis.Redis("redis://h:pap3shmob8jvb126nmbvaojr44d@ec2-54-83-33-255.compute-1.amazonaws.com:11019")
 
 
 @app.route("/")
