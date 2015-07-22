@@ -3,17 +3,12 @@ from itertools import chain
 import requests
 import orgs
 import os
-import urlparse
 
 import redis
 
+
 url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
 rserver = redis.from_url(url)
-
-# r_url = os.environ['REDIS_URL']
-# rserver = redis.Redis(r_url)
-
-# rserver = redis.Redis("redis://h:pap3shmob8jvb126nmbvaojr44d@ec2-54-83-33-255.compute-1.amazonaws.com:11019")
 
 
 #removed (covered by civicinfo...)
