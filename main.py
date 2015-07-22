@@ -3,12 +3,8 @@ import sys
 import operator
 import redis
 import os
-import urlparse
 
 app = Flask(__name__)
-
-url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
-rserver = redis.from_url(url)
 
 # r_url = os.environ['REDIS_URL']
 # rserver = redis.Redis(r_url)
@@ -33,4 +29,6 @@ def template_test():
 
 
 if __name__ == '__main__':
+    url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
+    rserver = redis.from_url(url)
     app.run()
