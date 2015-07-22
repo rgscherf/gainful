@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://bootswatch.com/slate/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="http://bootswatch.com/paper/bootstrap.min.css" type="text/css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script>
         (function(c){c.fn.stupidtable=function(b){return this.each(function(){var a=c(this);b=b||{};b=c.extend({},c.fn.stupidtable.default_sort_fns,b);a.data("sortFns",b);a.on("click.stupidtable","thead th",function(){c(this).stupidsort()})})};c.fn.stupidsort=function(b){var a=c(this),g=0,f=c.fn.stupidtable.dir,e=a.closest("table"),k=a.data("sort")||null;if(null!==k){a.parents("tr").find("th").slice(0,c(this).index()).each(function(){var a=c(this).attr("colspan")||1;g+=parseInt(a,10)});var d;1==arguments.length?
