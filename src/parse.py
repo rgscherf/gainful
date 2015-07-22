@@ -3,11 +3,17 @@ from itertools import chain
 import requests
 import orgs
 import os
+import urlparse
 
 import redis
 
-r_url = os.environ['REDIS_URL']
-rserver = redis.Redis(r_url)
+url = urlparse.urlparse(os.environ.get('REDIS_URL', 'redis://localhost'))
+
+rserver = redis.Redis(host=url.hostname, port=url.port, db=0, password=url.password)
+
+# r_url = os.environ['REDIS_URL']
+# rserver = redis.Redis(r_url)
+
 # rserver = redis.Redis("redis://h:pap3shmob8jvb126nmbvaojr44d@ec2-54-83-33-255.compute-1.amazonaws.com:11019")
 
 
