@@ -7,9 +7,8 @@ import urlparse
 
 import redis
 
-url = urlparse.urlparse(os.environ.get('REDIS_URL', 'redis://localhost'))
-
-rserver = redis.Redis(host=url.hostname, port=url.port, db=0, password=url.password)
+url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
+rserver = redis.from_url(url)
 
 # r_url = os.environ['REDIS_URL']
 # rserver = redis.Redis(r_url)
