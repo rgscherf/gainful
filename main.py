@@ -25,7 +25,7 @@ def template_test():
     for k in keys:
         h = rserver.hgetall(k)
         data.append(h)
-    data = sorted(data, key=operator.itemgetter('date'))
+    data = sorted(data, key=operator.itemgetter('org', 'date'))
     data.reverse()
 
     size = str(sys.getsizeof(data))
