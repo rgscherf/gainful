@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link href="http://bootswatch.com/paper/bootstrap.min.css" type="text/css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script language="JavaScript" src="/templates/stupid.js"></script>
     <script>
-        (function(c){c.fn.stupidtable=function(b){return this.each(function(){var a=c(this);b=b||{};b=c.extend({},c.fn.stupidtable.default_sort_fns,b);a.data("sortFns",b);a.on("click.stupidtable","thead th",function(){c(this).stupidsort()})})};c.fn.stupidsort=function(b){var a=c(this),g=0,f=c.fn.stupidtable.dir,e=a.closest("table"),k=a.data("sort")||null;if(null!==k){a.parents("tr").find("th").slice(0,c(this).index()).each(function(){var a=c(this).attr("colspan")||1;g+=parseInt(a,10)});var d;1==arguments.length?
-        d=b:(d=b||a.data("sort-default")||f.ASC,a.data("sort-dir")&&(d=a.data("sort-dir")===f.ASC?f.DESC:f.ASC));e.trigger("beforetablesort",{column:g,direction:d});e.css("display");setTimeout(function(){var b=[],l=e.data("sortFns")[k],h=e.children("tbody").children("tr");h.each(function(a,e){var d=c(e).children().eq(g),f=d.data("sort-value");"undefined"===typeof f&&(f=d.text(),d.data("sort-value",f));b.push([f,e])});b.sort(function(a,b){return l(a[0],b[0])});d!=f.ASC&&b.reverse();h=c.map(b,function(a){return a[1]});
-        e.children("tbody").append(h);e.find("th").data("sort-dir",null).removeClass("sorting-desc sorting-asc");a.data("sort-dir",d).addClass("sorting-"+d);e.trigger("aftertablesort",{column:g,direction:d});e.css("display")},10);return a}};c.fn.updateSortVal=function(b){var a=c(this);a.is("[data-sort-value]")&&a.attr("data-sort-value",b);a.data("sort-value",b);return a};c.fn.stupidtable.dir={ASC:"asc",DESC:"desc"};c.fn.stupidtable.default_sort_fns={"int":function(b,a){return parseInt(b,10)-parseInt(a,10)},
-        "float":function(b,a){return parseFloat(b)-parseFloat(a)},string:function(b,a){return b.localeCompare(a)},"string-ins":function(b,a){b=b.toLocaleLowerCase();a=a.toLocaleLowerCase();return b.localeCompare(a)}}})(jQuery);
-    </script>
-    <script>
-      $(function(){
-          $("table").stupidtable();
-      });
+        $(function() {
+            $("table").stupidtable();
+        });
     </script>
     <style type="text/css">
-        th[data-sort]{
-            cursor:pointer;
+        th[data-sort] {
+            cursor: pointer;
         }
     </style>
 
-    <title>Gainful 0.1</title>
+    <title>Gainful</title>
 </head>
 
 <body>
-    <h2>
-        Current public service job postings
-    </h2>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Gainful</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">All Jobs<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Today's jobs only</a></li>
+                    <li><a href="#">Ontario</a></li>
+                    <li><a href="#">British Columbia</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Daily Newsletter</a></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h3>
+        Public service job postings, served hourly
+    </h3>
     <p>
-        <em>Debug information</em>
+        Postings grouped by organization and date. Re-sort by clicking on column titles. Good luck!
     </p>
     <p>
+        <em>Debug information:</em>
+        <br/>
         Size of data object: {{ size }} bytes.
-    </p>
-    <p>
+        <br/>
         Number of Job objects: {{ length }}.
     </p>
-    <br>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -61,7 +82,7 @@
                     {{ r["org"] }}
                 </td>
                 <td>
-                    <a href={{ r["url"] }}>{{ r["title"] }}</a>
+                    <a href={{ r[ "url"] }}>{{ r["title"] }}</a>
                 </td>
                 <td>
                     {{ r["div"] }}
@@ -76,4 +97,5 @@
 
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>
