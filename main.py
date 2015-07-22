@@ -9,7 +9,7 @@ import redis
 app = Flask(__name__)
 
 
-rserver = redis.Redis("localhost")
+rserver = redis.Redis("redis://h:pap3shmob8jvb126nmbvaojr44d@ec2-54-83-33-255.compute-1.amazonaws.com:11019")
 
 
 @app.route("/")
