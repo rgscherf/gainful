@@ -1,6 +1,6 @@
-import json
-import datetime
+import json, datetime, requests
 import dateutil.parser as dp
+from bs4 import BeautifulSoup
 
 import sys
 reload(sys)
@@ -259,6 +259,7 @@ class OPS(Organization):
         # output_data.insert(0, ["Job Title", "Job URL", "Ministry", "Salary Range", "Location", "Closing Date"])
 
         tags = ["provincial", "ontario"]
+
         processed_output = []
         for elem in output_data:
             title = " ".join([word.capitalize() for word in elem[0].split()])
@@ -266,6 +267,28 @@ class OPS(Organization):
             job = Job(self.name, title, elem[2], parse_date(""), elem[1], key, tags)
             processed_output.append(job)
         return processed_output
+
+    def make_data_open_targeted(self, url):
+        r = requests.get(url)
+        rtext = r.text
+        soup = BeautifulSoup(rtext, "lxml")
+
+        title = soup.find("font", style="font-family:Verdana; font-size:140%; font-weight:bold; color:#000000;").text.encode('utf-8').strip()
+        title = " ".join([word.capitalize() for word in title.split()])
+
+        job_table = soup.find("table", id="JobAdTable_1")
+        rows = job_table.find_all("tr")
+
+        div = rows[1].find_all("td")
+        div = div[2].text.encode('utf-8').strip()
+
+        date = parse_date("")
+        url = url
+        key = "{}:{}:{}".format(self.name, title, url)
+        tags = ["provincial", "ontario", "open_targeted"]
+
+        job = Job(self.name, title, div, date, url, key, tags)
+        return job
 
 
 class BCPS(Organization):

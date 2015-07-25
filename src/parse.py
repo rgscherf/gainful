@@ -1,9 +1,8 @@
 from bs4 import BeautifulSoup
 from itertools import chain
-import requests
+import requests, os, sys
 import orgs
-import os
-import sys
+import crawl_ops_open as crawl
 
 import redis
 
@@ -48,6 +47,18 @@ def build_parse_list():
     return flattened_list
 
 
+def build_ot_list():
+    mi, ma = crawl.determine_bounds()
+    urls = crawl.crawl(mi, ma)
+    ops = orgs.OPS()
+
+    source = []
+    for url in urls:
+        source.append(ops.make_data_open_targeted(url))
+        print "found OT: {}".format(url)
+    return source
+
+
 def update_redis(jobs):
     no_new_jobs = True
     for job in jobs:
@@ -65,9 +76,21 @@ def update_redis(jobs):
     if no_new_jobs:
         print "No new job postings :("
 
+
 def update():
-    print "Updating redis DB:"
-    data = build_parse_list()
+    print "=================="
+    print "RUNNING DB UPDATES"
+    print "=================="
+
+    print "=== Parsing job sources ==="
+    base_data = build_parse_list()
+
+    print "=== Parsing OPS open targeted jobs ==="
+    open_targeted = build_ot_list()
+
+    data = base_data + open_targeted
+
+    print "=== Updating redis ==="
     update_redis(data)
 
 
