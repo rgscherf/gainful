@@ -21,8 +21,8 @@ def determine_bounds():
         url_list = url_text.split("JobID=")
         job_id = int(url_list[1])
         nums.append(job_id)
-    mi = max(nums) - 50
-    ma = max(nums) + 50
+    mi = max(nums) - 100
+    ma = max(nums) + 100
     return mi, ma
 
 
@@ -35,6 +35,7 @@ def crawl(mi, ma):
         soup = BeautifulSoup(ptext, "lxml")
         if is_posting(soup):
             results.append(this_url)
+            print "found OPS OT: {}".format(this_url)
     return results
 
 

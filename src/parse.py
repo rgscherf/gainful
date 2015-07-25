@@ -55,7 +55,6 @@ def build_ot_list():
     source = []
     for url in urls:
         source.append(ops.make_data_open_targeted(url))
-        print "found OT: {}".format(url)
     return source
 
 

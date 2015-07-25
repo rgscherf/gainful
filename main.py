@@ -46,6 +46,7 @@ def jobs_all():
 
     return render_template('jobs_all.html', data=data, size=size, length=length)
 
+
 @app.route("/bc")
 def jobs_bc():
     data = build_data_by_tag("bc")
@@ -56,6 +57,7 @@ def jobs_bc():
 def jobs_ontario():
     data = build_data_by_tag("ontario")
     return render_template('jobs_ontario.html', data=data)
+
 
 @app.route("/new")
 def jobs_new():
@@ -72,6 +74,13 @@ def jobs_new():
     data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
 
     return render_template('jobs_new.html', data=data)
+
+
+@app.route("/ot")
+def jobs_ops_ot():
+    data = build_data_by_tag("open_targeted")
+    return render_template('jobs_ops_ot.html', data=data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
