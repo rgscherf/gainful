@@ -50,7 +50,7 @@ def is_posting(soup):
 
 
 if __name__ == '__main__':
-    mi = sys.argv[0]
-    ma = sys.argv[1]
+    mi = int(sys.argv[0])
+    ma = int(sys.argv[1])
     data = parse.build_ot_list(mi, ma)
     parse.update_redis(data)
