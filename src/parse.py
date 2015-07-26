@@ -47,9 +47,14 @@ def build_parse_list():
     return flattened_list
 
 
-def build_ot_list():
-    mi, ma = crawl.determine_bounds()
-    urls = crawl.crawl(mi, ma)
+def build_ot_list(mi_explicit=None, ma_explicit=None):
+    if not mi_explicit:
+        print "Crawling OT with dynamic bounds..."
+        mi, ma = crawl.determine_bounds()
+        urls = crawl.crawl(mi, ma)
+    else:
+        print "Crawling OT with bounds: {}-{}".format(mi_explicit, ma_explicit)
+        urls = crawl.crawl(mi_explicit, ma_explicit)
     ops = orgs.OPS()
 
     source = []

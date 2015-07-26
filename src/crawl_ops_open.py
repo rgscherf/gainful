@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 import orgs
+import parse
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -49,4 +50,7 @@ def is_posting(soup):
 
 
 if __name__ == '__main__':
-    pass
+    mi = sys.argv[0]
+    ma = sys.argv[1]
+    data = parse.build_ot_list(mi, ma)
+    parse.update_redis(data)
