@@ -10,7 +10,7 @@ sys.setdefaultencoding('utf8')
 
 def determine_bounds():
     ops = orgs.OPS()
-    r = requests.get(ops.request_url)
+    r = requests.get(ops.request_url, verify=False)
     rtext = r.text
     soup = BeautifulSoup(rtext, "lxml")
     job_table = soup.find(ops.soup_find_list[0], ops.soup_find_list[1])
@@ -31,7 +31,7 @@ def crawl(mi, ma):
     results = []
     for i in range(mi, ma):
         this_url = "https://www.gojobs.gov.on.ca/Preview.aspx?JobID=" + str(i)
-        page = requests.get(this_url)
+        page = requests.get(this_url, verify=False)
         ptext = page.text
         soup = BeautifulSoup(ptext, "lxml")
         if is_posting(soup):

@@ -30,7 +30,7 @@ organizations = [ orgs.Toronto()
 
 
 def parse(org):
-    r = requests.get(org.request_url)
+    r = requests.get(org.request_url, verify=False)
     rtext = r.text
     soup = BeautifulSoup(rtext, "lxml")
     data = org.make_data(soup)
