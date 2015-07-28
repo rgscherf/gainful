@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import dateutil.parser as dp
 import sys
 import operator
 import redis
@@ -13,23 +14,43 @@ sys.setdefaultencoding('utf8')
 
 app = Flask(__name__)
 
-url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
-rserver = redis.from_url(url)
 
+###########
+# CONSTANTS
+###########
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 
+WEEKS_DELTA_FILTER = 3
+
+url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
+rserver = redis.from_url(url)
+
+
+##################
+# HELPER FUNCTIONS
+##################
 
 def build_data_by_tag(tag):
     keys = rserver.keys()
     data = []
     for k in keys:
         h = rserver.hgetall(k)
-        if tag in h["tags"]:
+        if tag in h["tags"] and filter_by_date(h["date"]):
             data.append(h)
     data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
     return data
 
+def filter_by_date(date_str):
+    job_date = dp.parse(date_str).date()
+    filter_cutoff = datetime.date.today() - datetime.timedelta(weeks=WEEKS_DELTA_FILTER)
+    if filter_cutoff >= job_date:
+        return False
+    return True
+
+#########
+# ROUTING
+#########
 
 @app.route("/")
 def jobs_all():
@@ -38,11 +59,12 @@ def jobs_all():
     data = []
     for k in keys:
         h = rserver.hgetall(k)
-        data.append(h)
+        if filter_by_date(h["date"]):
+            data.append(h)
     data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
 
     size = str(sys.getsizeof(data))
-    length = str(len(keys))
+    length = str(len(data))
 
     return render_template('jobs_all.html', data=data, size=size, length=length)
 
@@ -81,6 +103,10 @@ def jobs_ops_ot():
     data = build_data_by_tag("open_targeted")
     return render_template('jobs_ops_ot.html', data=data)
 
+
+######
+# MAIN
+######
 
 if __name__ == '__main__':
     app.run(debug=True)
