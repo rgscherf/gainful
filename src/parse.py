@@ -28,7 +28,11 @@ organizations = [ orgs.Toronto()
 
 
 def parse(org):
-    r = requests.get(org.request_url, verify=False)
+    try:
+        r = requests.get(org.request_url)
+    except requests.exceptions.SSLError:
+        print "Invalid SSL cert (probably OPS is being a butt):"
+        r = requests.get(org.request_url, verify=False)
     rtext = r.text
     soup = BeautifulSoup(rtext, "lxml")
     data = org.make_data(soup)

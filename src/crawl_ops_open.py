@@ -10,7 +10,11 @@ sys.setdefaultencoding('utf8')
 
 def determine_bounds():
     ops = orgs.OPS()
-    r = requests.get(ops.request_url, verify=False)
+    try:
+        r = requests.get(ops.request_url)
+    except requests.exceptions.SSLError:
+        print "Invalid SSL cert:"
+        r = requests.get(ops.request_url, verify=False)
     rtext = r.text
     soup = BeautifulSoup(rtext, "lxml")
     job_table = soup.find(ops.soup_find_list[0], ops.soup_find_list[1])
@@ -31,7 +35,11 @@ def crawl(mi, ma):
     results = []
     for i in range(mi, ma):
         this_url = "https://www.gojobs.gov.on.ca/Preview.aspx?JobID=" + str(i)
-        page = requests.get(this_url, verify=False)
+        try:
+            page = requests.get(this_url)
+        except requests.exceptions.SSLError:
+            print "Invalid SSL cert:"
+            page = requests.get(this_url, verify=False)
         ptext = page.text
         soup = BeautifulSoup(ptext, "lxml")
         if is_posting(soup):
@@ -50,7 +58,6 @@ def is_posting(soup):
 
 
 if __name__ == '__main__':
-    mi = int(sys.argv[1])
-    ma = int(sys.argv[2])
+    mi, ma = int(sys.argv[1]), int(sys.argv[2])
     data = parse.build_ot_list(mi, ma)
     parse.update_redis(data)
