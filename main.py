@@ -93,7 +93,7 @@ def jobs_new():
         h = rserver.hgetall(k)
         if h["date"] == today or h["date"] == yesterday:
             data.append(h)
-    data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
+    data = sorted(data, key=operator.itemgetter('date'), reverse=True)
 
     return render_template('jobs_new.html', data=data)
 
