@@ -5,7 +5,7 @@ Gainful
 
 Gainful is a simple aggregator for public service job postings in Ontario and BC.
 
-Filter postings by geographic region or job category. View the updated-hourly list of hidden Ontario Public Service job postings. ~~Sign up for the daily newsltter~~ coming soon!
+Filter postings by geographic region or job category. View the updated-hourly list of hidden Ontario Public Service job postings. ~~Sign up for the daily newsletter~~ coming soon!
 
 ### How
 
