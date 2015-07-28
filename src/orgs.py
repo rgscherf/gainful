@@ -374,6 +374,10 @@ class CivicInfo(Organization):
 
         return output_data
 
+class CivicInfo_North_Central(CivicInfo):
+    def __init__(self):
+        super(CivicInfo_North_Central, self).__init__()
+        Organization.__init__(self, "civicinfo_north_central")
 
 class AMCTO(Organization):
     def __init__(self):

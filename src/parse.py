@@ -12,10 +12,6 @@ sys.setdefaultencoding('utf8')
 url = os.getenv("REDISTOGO_URL", "redis://localhost:6379")
 rserver = redis.from_url(url)
 
-
-#removed (covered by civicinfo...)
-#          , orgs.Victoria()
-
 organizations = [ orgs.Toronto()
          , orgs.Hamilton()
          , orgs.Mississauga()
@@ -23,10 +19,12 @@ organizations = [ orgs.Toronto()
          , orgs.OPS()
          , orgs.BCPS()
          , orgs.CivicInfo()
+         , orgs.CivicInfo_North_Central()
          , orgs.AMCTO()
          ]
 
-# organizations = [ orgs.AMCTO() ]
+# SINGLE INSTANCE FOR DEBUGGING:
+# organizations = [ orgs.CivicInfo_North_Central() ]
 
 
 def parse(org):

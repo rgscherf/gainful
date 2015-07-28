@@ -20,7 +20,8 @@ Gainful parses a number of job posting sites with [beautiful soup](http://www.cr
 -	Association of Municipal Clerks and Treasurers of Ontario
 -	BC Public Service
 -	(BC) Capital Regional District
--	(BC) CivicInfo Vancouver Island
+-	(BC) CivicInfo Vancouver Island South
+-	(BC) CivicInfo Vancouver Island North and Central
 
 ### TODO
 

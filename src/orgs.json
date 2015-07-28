@@ -88,5 +88,15 @@
         ],
         "csv_name": "jobs_amcto.csv",
         "name": "AMCTO: "
+    },
+    "civicinfo_north_central": {
+        "request_url": "http://www.civicinfo.bc.ca/careers?stext=&type=ss&region=10&location=+&procat=+#sresults",
+        "soup_find_list": [
+            "ol", {
+                "start": "1"
+            }
+        ],
+        "csv_name": "jobs_civicinfo_north_central.csv",
+        "name": "CivicInfo: "
     }
 }
