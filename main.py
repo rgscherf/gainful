@@ -53,35 +53,6 @@ def filter_by_date(date_str):
 #########
 
 @app.route("/")
-def jobs_all():
-    keys = rserver.keys()
-
-    data = []
-    for k in keys:
-        h = rserver.hgetall(k)
-        if filter_by_date(h["date"]):
-            data.append(h)
-    data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
-
-    size = str(sys.getsizeof(data))
-    length = str(len(data))
-
-    return render_template('jobs_all.html', data=data, size=size, length=length)
-
-
-@app.route("/bc")
-def jobs_bc():
-    data = build_data_by_tag("bc")
-    return render_template('jobs_bc.html', data=data)
-
-
-@app.route("/ontario")
-def jobs_ontario():
-    data = build_data_by_tag("ontario")
-    return render_template('jobs_ontario.html', data=data)
-
-
-@app.route("/new")
 def jobs_new():
     today = orgs.parse_date_object(datetime.date.today())
     yesterday = datetime.date.today() - datetime.timedelta(days=1)
@@ -96,6 +67,35 @@ def jobs_new():
     data = sorted(data, key=operator.itemgetter('date'), reverse=True)
 
     return render_template('jobs_new.html', data=data)
+
+
+@app.route("/bc")
+def jobs_bc():
+    data = build_data_by_tag("bc")
+    return render_template('jobs_bc.html', data=data)
+
+
+@app.route("/ontario")
+def jobs_ontario():
+    data = build_data_by_tag("ontario")
+    return render_template('jobs_ontario.html', data=data)
+
+
+@app.route("/all")
+def jobs_all():
+    keys = rserver.keys()
+
+    data = []
+    for k in keys:
+        h = rserver.hgetall(k)
+        if filter_by_date(h["date"]):
+            data.append(h)
+    data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
+
+    size = str(sys.getsizeof(data))
+    length = str(len(data))
+
+    return render_template('jobs_all.html', data=data, size=size, length=length)
 
 
 @app.route("/ot")
