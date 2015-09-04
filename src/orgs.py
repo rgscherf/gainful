@@ -187,7 +187,7 @@ class Victoria(Organization):
         processed_output = []
         tags = ["municipal", "bc"]
         for elem in output_data:
-            key = "{}:{}:{}".format(self.name, elem[01], elem[7])
+            key = "{}:{}:{}".format(self.name, elem[1], elem[7])
             job = Job(self.name, elem[0], elem[2], parse_date(""), elem[7], key, tags)
             processed_output.append(job)
         return processed_output
@@ -318,7 +318,7 @@ class BCPS(Organization):
 
             div = cols[0].text.encode('utf-8').strip()
             padded_title = cols[2].text.encode('utf-8').strip()
-            title = self.unpad_title(padded_title)
+            title = padded_title.split(" - ")[1] if " - " in padded_title else padded_title
             date = parse_date(cols[5].text.encode('utf-8').strip())
 
             key = "{}:{}:{}".format(self.name, title, url)
