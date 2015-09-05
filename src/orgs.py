@@ -381,7 +381,7 @@ class CivicInfo_North_Central(CivicInfo):
 
 class CivicInfo_Lower_Mainland(CivicInfo):
     def __init__(self):
-        super(CivicInfo_North_Central, self).__init__()
+        super(CivicInfo_Lower_Mainland, self).__init__()
         Organization.__init__(self, "civicinfo_lower_mainland")
 
 class AMCTO(Organization):
