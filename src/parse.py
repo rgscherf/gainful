@@ -20,6 +20,7 @@ organizations = [ orgs.Toronto()
          , orgs.BCPS()
          , orgs.CivicInfo()
          , orgs.CivicInfo_North_Central()
+         , orgs.CivicInfo_Lower_Mainland()
          , orgs.AMCTO()
          ]
 

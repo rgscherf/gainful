@@ -70,7 +70,7 @@
         "name": "BC Public Service"
     },
     "civicinfo": {
-        "request_url": "http://www.civicinfo.bc.ca/careers?stext=&type=ss&region=11&location=+&procat=+#sresults",
+        "request_url": "http://www.civicinfo.bc.ca/careers?stext=&type=ss&region=11&location=+&procat=+&opp=by+Date+Posted+%28Newest%29#sresults",
         "soup_find_list": [
             "ol", {
                 "start": "1"
@@ -90,7 +90,7 @@
         "name": "AMCTO: "
     },
     "civicinfo_north_central": {
-        "request_url": "http://www.civicinfo.bc.ca/careers?stext=&type=ss&region=10&location=+&procat=+#sresults",
+        "request_url": "http://www.civicinfo.bc.ca/careers?stext=&type=ss&region=10&location=+&procat=+&opp=by+Date+Posted+%28Newest%29#sresults",
         "soup_find_list": [
             "ol", {
                 "start": "1"
@@ -98,5 +98,15 @@
         ],
         "csv_name": "jobs_civicinfo_north_central.csv",
         "name": "CivicInfo: "
+    },
+    "civicinfo_lower_mainland": {
+    "request_url": "http://www.civicinfo.bc.ca/careers?stext=&type=ss&region=9&company=+&procat=+&opp=by+Date+Posted+%28Newest%29#sresults",
+    "soup_find_list": [
+        "ol", {
+            "start": "1"
+        }
+    ],
+    "csv_name": "jobs_civicinfo_lower_mainland.csv",
+    "name": "CivicInfo: "
     }
 }
