@@ -84,7 +84,7 @@ def update_redis(jobs):
         print "No new job postings :("
 
 
-def update():
+def update(parse_ot=True):
     print "=================="
     print "RUNNING DB UPDATES"
     print "=================="
@@ -92,14 +92,21 @@ def update():
     print "=== Parsing job sources ==="
     base_data = build_parse_list()
 
-    print "=== Parsing OPS open targeted jobs ==="
-    open_targeted = build_ot_list()
-
-    data = base_data + open_targeted
+    if parse_ot:
+        print "=== Parsing OPS open targeted jobs ==="
+        open_targeted = build_ot_list()
+        data = base_data + open_targeted
+    else:
+        data = base_data
 
     print "=== Updating redis ==="
     update_redis(data)
 
 
 if __name__ == '__main__':
-    update()
+    if len(sys.argv) > 1:
+        "Parsing job boards, excluding OPS open targeted."
+        update(parse_ot=False)
+    else:
+        "Parsing job boards, including OPS open targeted."
+        update(parse_ot=True)

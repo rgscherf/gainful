@@ -365,7 +365,8 @@ class CivicInfo(Organization):
             date_unformatted = self.unpad_date(date_text)
             date = self.pack_date(date_unformatted)
 
-            org = self.name + org_suffix
+            # org = self.name + org_suffix
+            org = org_suffix # "CivicInfo: City of XXXXXX" started to get ugly
 
             tags = ["municipal", "bc"]
             key = "{}:{}:{}".format(org, title, url)
@@ -410,7 +411,8 @@ class AMCTO(Organization):
             text = text.text.encode('utf-8')
             div, title = self.extract_org_title(text)
             date = parse_date(row.span.span.span.text.encode('utf-8'))
-            name = self.name + div
+            # name = self.name + div
+            name = div # "AMCTO: City of XXXXXXX" started to get ugly
 
             tags = ["municipal", "ontario"]
             key = "{}:{}:{}".format(self.name, title, url)
