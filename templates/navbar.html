@@ -16,24 +16,28 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href={{ url_for("jobs_all") }}>Gainful</a>
+                    <a class="navbar-brand" href={{ url_for("index") }}>Gainful</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li {% if highlight == "all" %} class="active" {% endif %}>
                             <a href={{ url_for("jobs_all") }}>All Jobs</a></li>
-                        <li {% if highlight == "ontario" %} class="active" {% endif %}>
-                            <a href={{ url_for("jobs_ontario") }}>All Ontario</a></li>
-                        <li {% if highlight == "bc" %} class="active" {% endif %}>
-                            <a href={{ url_for("jobs_bc") }}>All BC</a></li>
                         <li {% if highlight == "new" %} class="active" {% endif %}>
-                            <a href={{ url_for("jobs_new") }}>New jobs only</a></li>
+                            <a href={{ url_for("jobs_new") }}>New Jobs</a></li>
+                        <li {% if highlight == "bc" %} class="active" {% endif %}>
+                            <a href={{ url_for("jobs_bc") }}>BC Only</a></li>
+                        <li {% if highlight == "ontario" %} class="active" {% endif %}>
+                            <a href={{ url_for("jobs_ontario") }}>Ontario Only</a></li>
                         <li {% if highlight == "ot" %} class="active" {% endif %}>
                             <a href={{ url_for("jobs_ops_ot") }}>OPS Open Targeted</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Daily Newsletter</a></a></li>
+                        <li>
+                            <a href="#">Newsletter</a></a>
+                        </li>
+                        <li {% if highlight == "about" %} class="active" {% endif %}> 
+                            <a href={{ url_for("about") }}>About</a></li>
                     </ul>
                 </div>
             </div>

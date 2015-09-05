@@ -53,6 +53,10 @@ def filter_by_date(date_str):
 #########
 
 @app.route("/")
+def index():
+    return render_template("index.html", highlight="index")
+
+@app.route("/new")
 def jobs_new():
     today = orgs.parse_date_object(datetime.date.today())
     yesterday = datetime.date.today() - datetime.timedelta(days=1)
@@ -97,6 +101,11 @@ def jobs_all():
 def jobs_ops_ot():
     data = build_data_by_tag("open_targeted")
     return render_template('jobtable.html', data=data, highlight="ot")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html", highlight="about")
 
 
 ######

@@ -1,0 +1,30 @@
+{% extends "navbar.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="templates/index.css">
+
+<div class="splash">
+    <div class="container">
+        Gainful: simple, sane public service job postings.
+    </div>
+</div>
+
+<h4>
+    <p>
+    Gainful pulls public service job postings from a variety of sources and presents them to you. No searching for the correct job title, no more folders full of job site bookmarks. 
+
+    <p>
+    View 
+        <a href={{url_for("jobs_all")}}>all current postings</a>, 
+        <a href={{url_for("jobs_new")}}>just new postings</a>, 
+        <a href={{url_for("jobs_bc")}}>just BC postings</a>, 
+        <a href={{url_for("jobs_ontario")}}>just Ontario postings</a>, or 
+        <a href={{url_for("jobs_ops_ot")}}>just OPS Open Targeted postings</a>. 
+
+    <p>
+    Gainful updates its job listings hourly.
+
+    <p>
+    Visit the <a href={{url_for("about")}}>about page</a> to see the current list of job sources and learn how you can contribute.
+</h4>
+
+{% endblock %}
