@@ -1,28 +1,27 @@
 {% extends "navbar.html" %}
 {% block content %}
 <style> 
-.cell {
-    font-size: 30px;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    line-height: 200px;
-    height:200px;
-    width: 100%;
-}
-.container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 200px;
-    width: 100%;
-    background-color: #7DBDAB;
-}
-p {
-    margin: 10px;
-    font-size: 20px;
-    line-height: 1.7em;
-    color: #000000;
-}
-
+    .cell {
+        font-size: 30px;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        line-height: 200px;
+        height:200px;
+        width: 100%;
+    }
+    .container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 200px;
+        width: 100%;
+        background-color: #34B097;
+    }
+    p {
+        margin: 30px;
+        font-size: 20px;
+        line-height: 1.7em;
+        color: #000000;
+    }
 </style>
 
 <div class="container">
@@ -43,9 +42,9 @@ View
     <a href={{url_for("jobs_ops_ot")}}>just OPS Open Targeted postings</a>. 
 
 <p>
-Gainful updates its listings hourly.
+Listings are updated hourly.
 
 <p>
-Visit the <a href={{url_for("about")}}>about page</a> to see the current list of job sources and learn how you can contribute.
+Visit the <a href={{url_for("about")}}>about page</a> to see the current list of job sources and learn how to contribute.
 
 {% endblock %}
