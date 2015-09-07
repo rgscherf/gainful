@@ -1,0 +1,39 @@
+.cell {
+    font-size: 30px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    line-height: 200px;
+    height:200px;
+    width: 100%;
+}
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 200px;
+    width: 100%;
+    background-color: #34B097;
+}
+
+.link {
+    margin: 10px;
+    font-size: 16px;
+    line-height: 1.7em;
+    color: #000000;
+}
+
+p {
+    margin: 10px;
+    font-size: 16px;
+    line-height: 1.7em;
+    color: #000000;
+}
+
+h2 {
+    color: #ffffff;
+    margin: 10px;
+    background-color: #34B097;
+}
+
+table {
+    margin: 10px;
+}

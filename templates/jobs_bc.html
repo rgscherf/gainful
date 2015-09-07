@@ -1,0 +1,11 @@
+{% extends "navbar.html" %}
+{% block content %}
+    <h2>
+        British Columbia Jobs
+    </h2>
+
+    <p>
+    Pulled from all BC sources, posted within the last three weeks.
+
+    {% include "jobtable.html" %}
+{% endblock %}

@@ -69,19 +69,19 @@ def jobs_new():
         if h["date"] == today or h["date"] == yesterday:
             data.append(h)
     data = sorted(data, key=operator.itemgetter('date'), reverse=True)
-    return render_template('jobtable.html', data=data, highlight="new")
+    return render_template('jobs_new.html', data=data, highlight="new")
 
 
 @app.route("/bc")
 def jobs_bc():
     data = build_data_by_tag("bc")
-    return render_template('jobtable.html', data=data, highlight="bc")
+    return render_template('jobs_bc.html', data=data, highlight="bc")
 
 
 @app.route("/ontario")
 def jobs_ontario():
     data = build_data_by_tag("ontario")
-    return render_template('jobtable.html', data=data, highlight="ontario")
+    return render_template('jobs_on.html', data=data, highlight="ontario")
 
 
 @app.route("/all")
@@ -94,13 +94,7 @@ def jobs_all():
         if filter_by_date(h["date"]):
             data.append(h)
     data = sorted(data, key=operator.itemgetter('org', 'date'), reverse=True)
-    return render_template('jobtable.html', data=data, highlight="all")
-
-
-@app.route("/ot")
-def jobs_ops_ot():
-    data = build_data_by_tag("open_targeted")
-    return render_template('jobtable.html', data=data, highlight="ot")
+    return render_template('jobs_all.html', data=data, highlight="all")
 
 
 @app.route("/about")

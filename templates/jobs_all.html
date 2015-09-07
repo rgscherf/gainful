@@ -1,0 +1,11 @@
+{% extends "navbar.html" %}
+{% block content %}
+    <h2>
+        All Jobs
+    </h2>
+
+    <p>
+    Pulled from all sources, sorted by organization. Only showing jobs posted within the last three weeks.
+
+    {% include "jobtable.html" %}
+{% endblock %}

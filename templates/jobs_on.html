@@ -1,0 +1,11 @@
+{% extends "navbar.html" %}
+{% block content %}
+    <h2>
+        Ontario Jobs
+    </h2>
+
+    <p>
+    Pulled from all Ontario sources, posted within the last three weeks. Includes Open Targeted postings.
+
+    {% include "jobtable.html" %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "navbar.html" %}
+{% block content %}
+    <h2>
+        New Jobs
+    </h2>
+
+    <p>
+    Pulled from all sources, posted within the last 48 hours.
+
+    {% include "jobtable.html" %}
+{% endblock %}

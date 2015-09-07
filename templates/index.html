@@ -1,29 +1,5 @@
 {% extends "navbar.html" %}
 {% block content %}
-<style> 
-    .cell {
-        font-size: 30px;
-        text-align: center;
-        color: rgb(255, 255, 255);
-        line-height: 200px;
-        height:200px;
-        width: 100%;
-    }
-    .container {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: 200px;
-        width: 100%;
-        background-color: #34B097;
-    }
-    p {
-        margin: 30px;
-        font-size: 20px;
-        line-height: 1.7em;
-        color: #000000;
-    }
-</style>
-
 <div class="container">
     <div class="cell">
         Gainful: simple, sane public service job postings.
@@ -37,9 +13,8 @@ Gainful aggregates public service job postings and only presents the information
 View 
     <a href={{url_for("jobs_all")}}>all current postings</a>, 
     <a href={{url_for("jobs_new")}}>just new postings</a>, 
-    <a href={{url_for("jobs_bc")}}>just BC postings</a>, 
-    <a href={{url_for("jobs_ontario")}}>just Ontario postings</a>, or 
-    <a href={{url_for("jobs_ops_ot")}}>just OPS Open Targeted postings</a>. 
+    <a href={{url_for("jobs_bc")}}>just BC postings</a>, or
+    <a href={{url_for("jobs_ontario")}}>just Ontario postings</a>. 
 
 <p>
 Listings are updated hourly.
