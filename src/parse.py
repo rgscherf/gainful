@@ -108,5 +108,6 @@ if __name__ == '__main__':
         "Parsing job boards, excluding OPS open targeted."
         update(parse_ot=False)
     else:
-        "Parsing job boards, including OPS open targeted."
-        update(parse_ot=True)
+        # "Parsing job boards, including OPS open targeted."
+        # update(parse_ot=True)
+        update(parse_ot=False)
